@@ -17,6 +17,10 @@ const rootReducer = (state = initialState, action) => {
         return {
             ...state, 
             numOfCakes: state.numOfCakes - 1}
+    case "SELL_CAKE":
+        return {
+            ...state,
+            numOfCakes: state.numOfCakes + 1}
     case 'CHANGENAME':
         return {
             ...state, 
