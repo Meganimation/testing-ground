@@ -30,6 +30,7 @@ function TaskList({ loading, tasks, onPinTask, onArchiveTask }) {
       </div>
     );
   }
+  //loading interface to suggest a loading screen.
 
   if (tasks.length === 0) {
     return (

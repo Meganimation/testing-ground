@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Form from './components/Form';
+
+
 
 function App() {
+
+const [number, setNumber] = useState(1)
+const dispatch = useDispatch()
+const counter = useSelector(state => state.counter)
+
+
   return (
+    <>
+    <h1>helllllo</h1>
+
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+  
+      <h1>Welcome to the testing ground.</h1>
+        <pr> Like a fairground, things break often here.</pr>
+      <br />
+        <pr> Unike a fairground, you won't die.</pr>
       </header>
     </div>
+
+
+    <h1>Counter: {counter}</h1> 
+    
+  <input type='text' value={number} onChange={(e) => setNumber(e.target.value)} />
+
+
+  <button onClick={()=> dispatch({type: "ANYAMOUNT", payload: number})}> add {number} things </button>
+  <button onClick={()=> dispatch({type: "INCREMENT"})}> +1 </button>
+  <button onClick={()=> dispatch({type: "DECREMENT"})}> -1 </button>
+  <button onClick={()=> dispatch({type: "DEFAULT"})}> reset </button>
+
+<Form/>
+    </>
+
   );
+  
 }
 
 export default App;
