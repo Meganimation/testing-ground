@@ -8,11 +8,19 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/rootReducer';
 
+
 const rubberedux = window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_EXTENSION__()
 
 const store = createStore(rootReducer,
     rubberedux 
     )
+
+    function buyCake() {
+        return {
+            type: "BUY_CAKE",
+            info: 'An action which depletes the cake store by one'
+    }
+    }
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
