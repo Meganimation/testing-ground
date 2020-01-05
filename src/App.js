@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Form from './components/Form';
+import CakeStore from './components/CakeStore';
 
 const INCREMENT = "INCREMENT"
 
@@ -38,6 +39,10 @@ const counter = useSelector(state => state.counter)
   <button onClick={()=> dispatch({type: "DEFAULT", info: 'resets the counter to default'})}> reset </button>
 
 <Form/>
+<br />
+<br />
+<br />
+<CakeStore/>
     </>
 
   );
