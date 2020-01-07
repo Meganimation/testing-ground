@@ -23,6 +23,12 @@ function sellCake() {
     dispatch({type: "SELL_CAKE"})
     }
 
+    function toggleEncryption() {
+        var x = document.getElementById("pwInput")
+        return (x.type === "password") ?  x.type = "text" : x.type = "password"
+        }
+      
+
     return (
         
         <div>
@@ -31,6 +37,16 @@ function sellCake() {
             <button onClick={buyCake}>Buy 1 Cake</button>
             <br />
             <button onClick={sellCake}>Sell 1 Cake</button>
+            <br/>
+            <br/>
+            <br/>
+
+
+            Password: <input type="password" id="pwInput" />
+            <br/>
+            <input type="checkbox" onClick={toggleEncryption}/>
+
+<p>Show Password</p> 
         </div>
     )
 }
