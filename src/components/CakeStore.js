@@ -40,13 +40,6 @@ function sellCake() {
             <br/>
             <br/>
             <br/>
-
-
-            Password: <input type="password" id="pwInput" />
-            <br/>
-            <input type="checkbox" onClick={toggleEncryption}/>
-
-<p>Show Password</p> 
         </div>
     )
 }

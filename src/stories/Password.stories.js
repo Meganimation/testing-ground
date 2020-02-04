@@ -6,16 +6,16 @@ export default {
   title: 'Button',
 };
 
-// function toggleEncryption() {
-//   var x = document.getElementById("pwInput")
-//   return (x.type === "password") ?  x.type = "text" : x.type = "password"
-//   }
+function toggleEncryption() {
+  var x = document.getElementById("pwInput")
+  return (x.type === "password") ?  x.type = "text" : x.type = "password"
+  }
 
   
-// export const password = () => (
-// <input type="password" id="pwInput" />
-// <input type="checkbox" onClick={toggleEncryption}/>
-// );
+export const password = () => (
+<input type="password" id="pwInput" />
+<input type="checkbox" onClick={toggleEncryption}/>
+);
 
 
 //create password box tonight with logic 

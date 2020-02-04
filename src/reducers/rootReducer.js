@@ -1,7 +1,8 @@
 export const initialState =  {
     counter: 0,
     name: 'Helloy McWorldFace',
-    numOfCakes: 10
+    numOfCakes: 10,
+    comp: false
 }
 
 
@@ -13,6 +14,11 @@ const rootReducer = (state = initialState, action) => {
 
     // add a counter which can be reset, an ability to change name, color etc.
     switch(action.type) {
+    case "TOGGLEVISBILITY": 
+        return {
+            ...state,
+            comp: state.comp = !state.comp
+        }
     case BUY_CAKE:
         return {
             ...state, 
