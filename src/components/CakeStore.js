@@ -5,34 +5,29 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export default function CakeStore() {
 
-const dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const numOfCakes = useSelector(state => state.numOfCakes)
 
-const numOfCakes = useSelector(state => state.numOfCakes)
+    function buyCake() {
+    if (numOfCakes <= 0) {
+        alert("There's no more cakes left! Soz m8!")
+    }
+    else
+        dispatch({type: "BUY_CAKE"})
+    }
 
-
-function buyCake() {
- 
-if (numOfCakes <= 0) {
-    alert("There's no more cakes left! Soz m8!")
-}
-else
-    dispatch({type: "BUY_CAKE"})
-}
-
-function sellCake() {
-    dispatch({type: "SELL_CAKE"})
+    function sellCake() {
+        dispatch({type: "SELL_CAKE"})
     }
 
     function toggleEncryption() {
         var x = document.getElementById("pwInput")
         return (x.type === "password") ?  x.type = "text" : x.type = "password"
-        }
-      
+    }
 
     return (
-        
-        <div>
-          <h2>  Number of cakes: {numOfCakes} </h2>
+        <>
+        <h2>  Number of Cakes: {numOfCakes} </h2>
             <br />
             <button onClick={buyCake}>Buy 1 Cake</button>
             <br />
@@ -40,6 +35,6 @@ function sellCake() {
             <br/>
             <br/>
             <br/>
-        </div>
+        </>
     )
 }

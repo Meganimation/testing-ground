@@ -9,8 +9,8 @@ import React, { Component, useRef } from "react";
 
     return (
       <>
-      <h3> Fuck you DataID! Refs is where it's at!</h3>
-      <br />
+
+
         <input type="text" ref={textInput} placeholder="placeholder text" />
         <br/> 
         <button onClick={()=>{console.log(textInput.current)}}>Console log the ref</button>
@@ -21,8 +21,6 @@ import React, { Component, useRef } from "react";
         <br /> 
         <button onClick={()=>{buttonInput.current.style.color = 'black'}}> Change the above button's text color </button>
         <br /> 
-        <br />
-        <br />
         <button onClick={()=>{alert( `That button's name is ${buttonInput.current.name}`)}} > What is that buttons name? </button>
         <br />
         <button onClick={()=>{buttonInput.current.style.backgroundColor='red'; buttonInput.current.innerText = 'This one'}} > But which button is that? </button>

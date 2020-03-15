@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import HookButton from './hookButton'
 
 
 function Form(){
@@ -11,9 +12,11 @@ const name = useSelector(state => state.name)
         return (
             <>
             <br/>
-  <h1>Name: {name}</h1>
+  <p>Name: {name}</p>
+  <br />  <br />
   <input type='name' value={currentName} onChange={e => setName(e.target.value)} />
-  <button onClick={()=> dispatch({type: "CHANGENAME", payload: currentName})}> Change Name </button>
+  <br />  <br />  <br />
+  <HookButton text={'change name'} onClick={()=> dispatch({type: "CHANGENAME", payload: currentName})}> Change Name </HookButton>
             </>
         )
     }
