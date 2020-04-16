@@ -1,4 +1,6 @@
 import React, { Component, useRef } from "react";
+import HookButton from './hookButton'
+import HookHeader from './hookHeader'
 
  const Ref=()=> {
 
@@ -10,20 +12,20 @@ import React, { Component, useRef } from "react";
     return (
       <>
 
-
+<HookHeader text={'useRef'}/>
         <input type="text" ref={textInput} placeholder="placeholder text" />
         <br/> 
-        <button onClick={()=>{console.log(textInput.current)}}>Console log the ref</button>
+        <HookButton text={'console log the ref'}  onClick={()=>{console.log(textInput.current)}}>Console log the ref</HookButton >
         <br />
-        <button onClick={()=>{textInput.current.focus()}}>Focus on the ref</button>
+        <HookButton  text={'focus on the ref'}  onClick={()=>{textInput.current.focus()}}>Focus on the ref</HookButton >
         <br /> 
-        <button name="Button the Benjamin" value="Ugh" style={{color: 'red'}} ref={buttonInput} onClick={()=>{textInput.current.placeholder = 'Hello'}}>Change placeholder to 'Hello'</button>
+        <HookButton  text={'change placeholder to a greeting'}  name="HookButton  the Benjamin" value="Ugh" style={{color: 'red'}} ref={buttonInput} onClick={()=>{textInput.current.placeholder = 'Hello'}}>Change placeholder to 'Hello'</HookButton >
         <br /> 
-        <button onClick={()=>{buttonInput.current.style.color = 'black'}}> Change the above button's text color </button>
+        {/* <HookButton  text={'change abover buttons color'}  onClick={()=>{buttonInput.current.style.color = 'black'}}> Change the above HookButton 's text color </HookButton >
         <br /> 
-        <button onClick={()=>{alert( `That button's name is ${buttonInput.current.name}`)}} > What is that buttons name? </button>
+        <HookButton text={'that buttons name?'}  onClick={()=>{alert( `That HookButton 's name is ${buttonInput.current.name}`)}} > What is that buttons name? </HookButton >
         <br />
-        <button onClick={()=>{buttonInput.current.style.backgroundColor='red'; buttonInput.current.innerText = 'This one'}} > But which button is that? </button>
+        <HookButton  text={'this one'} onClick={()=>{buttonInput.current.style.backgroundColor='red'; buttonInput.current.innerText = 'This one'}} > But which button  is that? </HookButton > */}
       </>
     );
   }

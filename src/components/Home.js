@@ -6,6 +6,7 @@ import CakeStore from './CakeStore';
 import Ref from './Ref';
 import Counter from './Counter';
 import UseLayout from './UseLayout';
+import { createGlobalStyle, css, keyframes } from 'styled-components'
 
 export const Home = () => {
 
@@ -17,12 +18,29 @@ export const Home = () => {
   
   const dispatch = useDispatch()
   const comp = useSelector(state => state.comp)
+
+  const animation = keyframes`
+  0% {
+    border-color: black;
+  }
+ 
+  100% {
+    border-color: darkGreen;
+    opacity: 70%;
+  }
+}
+`
+
+  const animationRule = css`
+  ${animation} 5s infinite alternate;
+`
   
   
   const Box = styled.div `
   background-color: black; 
-  border: 10px dotted;
-  border-color: white;
+  
+  border: 1px dashed;
+  border-color: green;
   width: 300px;
   height: 400px;
   position: absolute;
@@ -33,7 +51,12 @@ export const Home = () => {
   padding: 40px;
   color: white;
   z-index: 9;
+  animation: ${animationRule};
   `
+
+ 
+
+
 
   
   const Header = styled.nav `
@@ -73,13 +96,14 @@ export const Home = () => {
       border-color: lightGreen;
     }
   `
+
   
 
 
   function hookButton(theState, settingState, name) {
     switch(theState) {
       case counterVisibility:
-        return ( <Button onClick={(e) => settingState(!theState)} >{name}  {theState ? <p>ON</p> : <p>OFF</p>} </Button> )
+        return (  <Button onClick={(e) =>  settingState(!theState)} >{name}  {theState ? <p>ON</p> : <p>OFF</p>} </Button> )
           break;
         case refVisibility:
           return ( <Button onClick={(e) => settingState(!theState)} >{name}  {theState ? <p>ON</p> : <p>OFF</p>} </Button> )

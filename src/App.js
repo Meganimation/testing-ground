@@ -100,13 +100,16 @@ const borderAnimation = keyframes`
     opacity: 1;
     padding-left: 10px;
     border: 2px dashed;
+    color: darkGreen;
   }
- 
+ n 
   100% {
     opacity: 1;
     top: 0px;
     padding-left: 30px;
     border: 2px dotted;
+    letter-spacing: 20px;
+    color: green;
   }
 }
 `
@@ -141,7 +144,7 @@ const FakeButton = styled.div`
 
   &:hover {
     animation: ${borderAnimationRule};
-    background-color: ${borderAnimation}
+    background-color: ${borderAnimation};
   }
 `;
 // this is just a div for now... Check the JSX to see how it becomes a button
@@ -168,11 +171,11 @@ width: 100%;
 
 
 <Router> 
-<FakeButton as="button" >       <Link to='/'> Home  </Link>  </FakeButton>
+<FakeButton as="button" > <Link to='/' style={{color: 'white'}}> hooks  </Link>  </FakeButton>
 <br />
-<FakeButton as="button" > <Link to='/about'> About  </Link>  </FakeButton>
+<FakeButton as="button" > <Link to='/about' style={{color: 'white'}}> algorithms  </Link>  </FakeButton>
 <br />
-<FakeButton as="button" >  <Link to='/user/bigboi/mckenny'> User  </Link>  </FakeButton>
+<FakeButton as="button" >  <Link to='/user/bigboi/mckenny' style={{color: 'white'}}> user  </Link>  </FakeButton>
 
 
   <Content>

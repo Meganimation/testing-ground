@@ -1,6 +1,9 @@
 
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import HookButton from './hookButton'
+import HookHeader from './hookHeader'
+import HookInput from './hookInput'
 
 
 
@@ -13,16 +16,16 @@ const INCREMENT = "INCREMENT"
 
     return (
 <>
-    <h1>Counter: {counter}</h1> 
-  <input type='text' value={number} onChange={(e) => setNumber(e.target.value)} />  <br />  <br />
-  <button onClick={()=> dispatch({type: "ANYAMOUNT", info: 'adds the amount entered via input', payload: number})}> add {number} things </button>
+    <HookHeader text={`Counter: ${counter}`} />
+  <HookInput type='text' value={number} onChange={(e) => setNumber(e.target.value)} />  <br />  <br />
+  <HookButton text={`add ${number} things`}onClick={()=> dispatch({type: "ANYAMOUNT", info: 'adds the amount entered via input', payload: number})}> add {number} things </HookButton>
   <br />  <br />
-  <button onClick={()=> dispatch({type: INCREMENT})}> +1 </button> 
+  <HookButton text={'+1'} onClick={()=> dispatch({type: INCREMENT})}> +1 </HookButton> 
 
   {/* apparently its better to save type values to a variable? */}
-  <button onClick={()=> dispatch({type: "DECREMENT"})}> -1 </button>
+  <HookButton text={'-1'} onClick={()=> dispatch({type: "DECREMENT"})}> -1 </HookButton>
   <br />  <br />
-  <button onClick={()=> dispatch({type: "DEFAULT", info: 'resets the counter to default'})}> reset </button>
+  <HookButton text={'reset'} onClick={()=> dispatch({type: "DEFAULT", info: 'resets the counter to default'})}> reset </HookButton>
 </>)
 }
 

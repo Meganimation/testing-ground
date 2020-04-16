@@ -47,6 +47,10 @@ const rootReducer = (state = initialState, action) => {
         return {
             ...state, 
             counter: state.counter + parseInt(action.payload)}
+    case 'RESETHOOKS': 
+        return {
+            ...state, 
+            counter: state.counter + parseInt(action.payload)}
 
     default: 
         return state;

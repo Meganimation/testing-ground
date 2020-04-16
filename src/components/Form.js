@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import HookButton from './hookButton'
+import HookHeader from './hookHeader'
+
 
 
 function Form(){
@@ -12,9 +14,9 @@ const name = useSelector(state => state.name)
         return (
             <>
             <br/>
-  <p>Name: {name}</p>
+  <HookHeader text={`name: ${name}`}/>
   <br />  <br />
-  <input type='name' value={currentName} onChange={e => setName(e.target.value)} />
+  <input style={{padding: '0px', borderColor: 'green', backgroundColor: 'black', color: 'green'}}type='name' value={currentName} onChange={e => setName(e.target.value)} />
   <br />  <br />  <br />
   <HookButton text={'change name'} onClick={()=> dispatch({type: "CHANGENAME", payload: currentName})}> Change Name </HookButton>
             </>
