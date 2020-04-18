@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Form from './components/Form';
-import CakeStore from './components/CakeStore';
-import Ref from './components/Ref';
-import Counter from './components/Counter';
-import UseLayout from './components/UseLayout';
+import Form from './components/HookComponents/Form';
+import CakeStore from './components/HookComponents/CakeStore';
+import Ref from './components/HookComponents/Ref';
+import Counter from './components/HookComponents/Counter';
+import UseLayout from './components/HookComponents/UseLayout';
 import styled from 'styled-components';
 import { createGlobalStyle, css, keyframes } from 'styled-components'
 import {BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'

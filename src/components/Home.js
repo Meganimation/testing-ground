@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import Form from './Form';
-import CakeStore from './CakeStore';
-import Ref from './Ref';
-import Counter from './Counter';
-import UseLayout from './UseLayout';
+import Form from './HookComponents/Form';
+import CakeStore from './HookComponents/CakeStore';
+import Ref from './HookComponents/Ref';
+import Counter from './HookComponents/Counter';
+import UseLayout from './HookComponents/UseLayout';
 import { createGlobalStyle, css, keyframes } from 'styled-components'
 
 export const Home = () => {

@@ -1,6 +1,6 @@
 import React, { Component, useRef } from "react";
-import HookButton from './hookButton'
-import HookHeader from './hookHeader'
+import HookButton from '../hookButton'
+import HookHeader from '../hookHeader'
 
  const Ref=()=> {
 

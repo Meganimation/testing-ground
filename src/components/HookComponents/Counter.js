@@ -1,9 +1,9 @@
 
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import HookButton from './hookButton'
-import HookHeader from './hookHeader'
-import HookInput from './hookInput'
+import HookButton from '../hookButton'
+import HookHeader from '../hookHeader'
+import HookInput from '../hookInput'
 
 
 
