@@ -8,92 +8,118 @@ import { useFetch } from "./useFetch";
 
 const Box = styled.div `
 background-color: black; 
-
-border: 1px dashed;
 border-color: green;
 width: 300px;
 height: 400px;
 position: absolute;
 left: 900px;
 top: 5%;
-text-align: center;
-display: center;
 padding: 40px;
 color: white;
 `
 
 
-const Card = styled.div `
+const NoteContainer = styled.div `
+background-color: black; 
+padding-top: 30px;
+color: white;
+max-width: 600px;
+`
+
+
+const SearchContainer = styled.div `
   background-color: black; 
   width: 600px;
-  text-align: center;
   display: center;
   color: white;
   z-index: 9;
   `
 
-  const CardContainer = styled.div `
-  background-color: red; 
-  border: 1px dashed;
-  border-color: green;
-  width: 600px;
 
-  position: absolute;
-  left: 10%;
-  top: 100%;
-  text-align: center;
-  display: center;
-  padding: 40px;
-  color: white;
-  z-index: 9;
-  `
 export const About = () => {
 
-    const name = useSelector(state => state.name)
+    const counter = useSelector(state => state.name)
+    const name = useSelector(state => state.counter)
 
    const {data, loading} = useFetch('http://localhost:3000/notes')
-
    const [state, setState] = useState({currentName: '', currentDesc: '', currentCode: '', currentGenre: ''})
 
-        
-// const print=(e)=>{
-//     e.target.innerText = (state.data.map((data) => {
-//     return (data.name + data.genre)
-//     }))}
+   const [searchResults, setSearchResults] = React.useState([])
 
-    const printData=()=>{
+   const [searchTerm, setSearchTerm] = React.useState("")
+
+
+ React.useEffect(() => {
+    const results = loading ? '...' : data.filter(data =>
+      data.name.includes(searchTerm)
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
+
+
+function PostData(){
+    // POST request using fetch inside useEffect React hook
+    fetch('http://localhost:3000/notes', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: state.currentName,
+              desc: state.currentDesc,
+              code: state.currentCode,
+              genre: state.currentGenre
+          })
+        })
+          .then(console.log(state.name))
+      
+        return null }
+
+
+    
+    
+    const printData=(deletePost)=>{
+        console.log(searchResults)
+
        return (
-           <div>
-         {data.map((data)=>{
-        return (
-            <div> hello {name} + {data.name}
-        <Card>
-            <Note name={data.name} desc={data.desc} code={data.code} genre={data.genre} />
-        </Card>
-            </div>)})}
-            </div>
+        //    <div>
+        //  {data.map((data)=>{
+        // return (
+        //     <div> hello {name} + {counter} + {data.id}
+        // <Card>
+  
+        //     <Note  id={data.id} name={data.name} desc={data.desc} code={data.code} genre={data.genre} />
+        // </Card>
+        //     </div>)})}
+        <NoteContainer>
+        <Note loading={loading} data={searchResults} />
+            </NoteContainer>
             
        )
     }
     
+    function handleChange(e){
+        setSearchTerm(e.target.value)
+    }
     
     return (
     <>
-       
-       <div>
+       <SearchContainer>
             Search Notes:
         <br />
-   <input />
-        </div>
+        <br />
+   <input style={{width: '600px'}}onChange={handleChange} value={state.searchTerm}  type="text" placeholder="Search" />
+        </SearchContainer>
 
     <Box >
         <form >
         <h1> Submit a note</h1>
-        <p>name: <input value='name' value={state.currentName} onChange={e => setState({currentName: e.target.value})} /></p>
-        <p>description: <input value='desc' value={state.currentDesc} onChange={e => setState({currentDesc: e.target.value})}/></p>
-        <p>code: <input value='code' value={state.currentCode} onChange={e => setState({currentCode: e.target.value})}/></p>
-        <p>genre: <input value='genre' value={state.currentGenre} onChange={e => setState({currentGenre: e.target.value})}/></p>
-        <button onClick={()=>{alert(state.currentGenre)}}> submit </button>
+        <p>name: <input value='name' value={state.currentName} onChange={e => setState({...state, currentName: e.target.value})} /></p>
+        <p>description: <input value='desc' value={state.currentDesc} onChange={e => setState({...state, currentDesc: e.target.value})}/></p>
+        <p>code: <input value='code' value={state.currentCode} onChange={e => setState({...state, currentCode: e.target.value})}/></p>
+        <p>genre: <input value='genre' value={state.currentGenre} onChange={e => setState({...state, currentGenre: e.target.value})}/></p>
+        <button onClick={PostData}> submit </button>
         </form>
     </Box >
 
