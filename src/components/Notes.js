@@ -57,7 +57,7 @@ export const Note = (loading, data, searchResults, props) => {
             return (loading.data.map((data) => {
                 
                 const moreData=()=>{
-           
+                 
                     return (
                     <Data>
                         <small>{data.genre}</small>
@@ -67,8 +67,10 @@ export const Note = (loading, data, searchResults, props) => {
                         <code>{data.code}</code>
                         <br />
                         <button onClick={(e)=>deletePost(e, data.id)}> delete </button>  
-                    </Data>)
-                        }
+                    </Data>
+                        )
+                    }        
+                        
                     
                 
                 return (
