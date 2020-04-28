@@ -50,8 +50,10 @@ export const About = () => {
 
 
  React.useEffect(() => {
+  
+  
     const results = loading ? '...' : data.filter(data =>
-      data.name.includes(searchTerm)
+      data.name.includes(searchTerm.toUpperCase())
     );
     setSearchResults(results);
   }, [searchTerm]);
@@ -66,7 +68,7 @@ function PostData(){
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              name: state.currentName,
+              name: state.currentName.toUpperCase(),
               desc: state.currentDesc,
               code: state.currentCode,
               genre: state.currentGenre
@@ -77,10 +79,11 @@ function PostData(){
         return null }
 
 
-    
-    
+ 
     const printData=(deletePost)=>{
         console.log(searchResults)
+
+        
 
        return (
         //    <div>
@@ -102,6 +105,8 @@ function PostData(){
     function handleChange(e){
         setSearchTerm(e.target.value)
     }
+
+          
     
     return (
     <>
@@ -115,7 +120,7 @@ function PostData(){
     <Box >
         <form >
         <h1> Submit a note</h1>
-        <p>name: <input value='name' value={state.currentName} onChange={e => setState({...state, currentName: e.target.value})} /></p>
+        <p>name: <input value='name' value={state.currentName} onChange={e => setState({...state, currentName: e.target.value.toLowerCase()})} /></p>
         <p>description: <input value='desc' value={state.currentDesc} onChange={e => setState({...state, currentDesc: e.target.value})}/></p>
         <p>code: <input value='code' value={state.currentCode} onChange={e => setState({...state, currentCode: e.target.value})}/></p>
         <p>genre: <input value='genre' value={state.currentGenre} onChange={e => setState({...state, currentGenre: e.target.value})}/></p>

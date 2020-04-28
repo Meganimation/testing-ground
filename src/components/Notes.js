@@ -26,7 +26,11 @@ export const Note = (loading, data, searchResults, props) => {
        
     const Data = styled.div `
     padding: 20px;
-    position: absolute: 
+    position: fixed: 
+    top: 100px;
+    right: 100px;
+    background: green;
+    
     width: 50%    
     `
     
@@ -53,13 +57,12 @@ export const Note = (loading, data, searchResults, props) => {
     if (loading.data === '...') {
         return '...' } 
         if (loading.loading === false) {
-  
             return (loading.data.map((data) => {
-                
+                debugger
                 const moreData=()=>{
-                 
+                 debugger
                     return (
-                    <Data>
+       <>
                         <small>{data.genre}</small>
                         <br />
                         <i>{data.desc}</i>
@@ -67,19 +70,24 @@ export const Note = (loading, data, searchResults, props) => {
                         <code>{data.code}</code>
                         <br />
                         <button onClick={(e)=>deletePost(e, data.id)}> delete </button>  
-                    </Data>
+            </>
                         )
+                     
                     }        
                         
-                    
+                
                 
                 return (
                 <Box>
             <div>
-            <button onClick={()=>{setRevealData(!revealData)}}>{data.name}</button>
-            <>
-            {!revealData ? <div style={{width: '500px'}}>...</div> : moreData()}
+                <>
+      
+                 {/* <button onClick={()=>{setRevealData(!revealData)}}>{data.name}</button>  */}
+                 <button onClick={()=>{setRevealData(!revealData)}}>{data.name}</button> 
             </>
+   
+            {!revealData ? <div style={{width: '500px'}}>...</div> : <> {moreData()} </>}
+           
             
             </div> 
             </Box> 
