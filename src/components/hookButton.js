@@ -14,7 +14,6 @@ margin-top: 5px;
             color: white;
             border: 1px dotted green;
         }
-
 `
 
 const HookButton=({onClick, text, ...props})=> {

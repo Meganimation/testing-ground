@@ -3,9 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import HookButton from '../hookButton'
 import HookHeader from '../hookHeader'
 
-
-
-
 export default function CakeStore() {
 
     const dispatch = useDispatch()
@@ -19,13 +16,9 @@ export default function CakeStore() {
         dispatch({type: "BUY_CAKE"})
     }
 
+
     function sellCake() {
         dispatch({type: "SELL_CAKE"})
-    }
-
-    function toggleEncryption() {
-        var x = document.getElementById("pwInput")
-        return (x.type === "password") ?  x.type = "text" : x.type = "password"
     }
 
     return (

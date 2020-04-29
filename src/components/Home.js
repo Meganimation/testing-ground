@@ -16,14 +16,14 @@ export const Home = () => {
     const [formVisibility, setFormVisibility] = useState(false)
     const [useLayoutVisibility, setUseLayoutVisibility] = useState(false)
   
-  const dispatch = useDispatch()
-  const comp = useSelector(state => state.comp)
+    const dispatch = useDispatch()
+    const comp = useSelector(state => state.comp)
 
-  const animation = keyframes`
+
+const animation = keyframes`
   0% {
     border-color: black;
   }
- 
   100% {
     border-color: darkGreen;
     opacity: 70%;
@@ -31,14 +31,14 @@ export const Home = () => {
 }
 `
 
-  const animationRule = css`
+
+const animationRule = css`
   ${animation} 5s infinite alternate;
 `
   
   
-  const Box = styled.div `
+const Box = styled.div `
   background-color: black; 
-  
   border: 1px dashed;
   border-color: green;
   width: 300px;
@@ -54,12 +54,8 @@ export const Home = () => {
   animation: ${animationRule};
   `
 
- 
-
-
-
   
-  const Header = styled.nav `
+const Header = styled.nav `
   top: 90px;
   width: 100%;
   height: 300px;
@@ -69,25 +65,24 @@ export const Home = () => {
   flex: 8;
   -webkit-box-align: center;
   line-height: 13vh;
-  
-  `
+`
 
 
-  const Button = styled.button `
-    color: darkGreen;
-    font-family: monospace
-    font-weight: 900px;
-    background: black;
-    border-radius: 5%;
-    padding: 10px;
-    width: 150px;
-    height: 70px
-    margin: 20px;
-    text-align: center;
-    display: inline-block;
-    border: 2px;
-    border-style: dotted;
-    border-color: darkGreen;
+const Button = styled.button `
+  color: darkGreen;
+  font-family: monospace
+  font-weight: 900px;
+  background: black;
+  border-radius: 5%;
+  padding: 10px;
+  width: 150px;
+  height: 70px
+  margin: 20px;
+  text-align: center;
+  display: inline-block;
+  border: 2px;
+  border-style: dotted;
+  border-color: darkGreen;
 
     &:hover {
       color: green;
@@ -96,9 +91,6 @@ export const Home = () => {
       border-color: lightGreen;
     }
   `
-
-  
-
 
   function hookButton(theState, settingState, name) {
     switch(theState) {
@@ -121,8 +113,7 @@ export const Home = () => {
   }
 
     return (
-        <div>
-      
+<div>
   <Header >
       {hookButton(counterVisibility, setCounterVisibility, 'Counter')}
       <br />
@@ -139,7 +130,7 @@ export const Home = () => {
   {cakeStoreVisibility ? <Box><CakeStore /></Box>  : null}
   {refVisibility ? <Box> <Ref/> </Box> : null}
   {useLayoutVisibility ? <Box> <UseLayout/> </Box> : null}
-</>
-        </div>
+  </>
+</div>
     )
 }
