@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {useFetch} from './useFetch'
 import styled from 'styled-components';
 import HookButton from './hookButton'
@@ -40,36 +40,46 @@ const Data = styled.div `
         }
     }
 
+
 const Notes = () => {
 
-    const [revealData, setRevealData] = useState(false)
+    const [revealData, setRevealData] = useState(true)
 
     if (loading.data === '...') {
         return '...' 
     } 
+
+    // data.filter(data =>
+    //     data.name.includes(searchTerm.toUpperCase())
+    //   )
+
+    function showMore(e, dataName, dataDesc){
+        debugger
+   return e.target.parentElement.innerHTML=dataDesc
+}
+
     if (loading.loading === false) {
         return (loading.data.map((data) => {
             const moreData=()=>{
                 return (
-                    <>
-                    <small>{data.genre}</small>
-                    <br />
-                    <i>{data.desc}</i>
-                    <br />
-                    <code>{data.code}</code>
-                    <br />
-                    <button onClick={(e)=>deletePost(e, data.id)}> delete </button>  
-                    </>
+                    <div >
+                   more data here or somewhere where it doesnt map 
+                    </div>
                         )
                     }        
                         
         return (
             <Box>
+                <h2>{data.name}</h2>
                 <div>
                 <>
-                <button onClick={()=>{setRevealData(!revealData)}}>{data.name}</button> 
+                {/* <button onClick={()=>{setRevealData(!revealData)}}>{data.name}</button>  */}
+                <button onClick={(e)=>{showMore(e, data.name, data.desc)}}>info</button> 
+                <>
+                </>
                 </>
                 { !revealData ? <div style={{width: '500px'}}>...</div> : <> {moreData()} </> }
+                <button onClick={(e)=>deletePost(e, data.id)}> delete </button>  
                 </div> 
             </Box> 
             )}
