@@ -13,6 +13,7 @@ const Counter = () => {
     const INCREMENT = "INCREMENT"
 
 
+
     return (
 <>
     <HookHeader text={`Counter: ${counter}`} />
@@ -27,6 +28,7 @@ const Counter = () => {
     <br /> 
     <br />
     <HookButton text={'reset'} onClick={()=> dispatch({type: "DEFAULT", info: 'resets the counter to default'})}> reset </HookButton>
+
 </>)
 }
 

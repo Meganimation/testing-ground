@@ -53,9 +53,10 @@ const Notes = () => {
     //     data.name.includes(searchTerm.toUpperCase())
     //   )
 
-    function showMore(e, dataName, dataDesc){
+    function showMore(e, dataName, dataDesc, dataCode){
         debugger
-   return e.target.parentElement.innerHTML=dataDesc
+   return e.target.nextSibling.innerText=dataDesc,
+   e.target.nextSibling.nextSibling.innerText=dataCode
 }
 
     if (loading.loading === false) {
@@ -63,7 +64,7 @@ const Notes = () => {
             const moreData=()=>{
                 return (
                     <div >
-                   more data here or somewhere where it doesnt map 
+                   more data here or somewhere where it doesnt
                     </div>
                         )
                     }        
@@ -74,9 +75,11 @@ const Notes = () => {
                 <div>
                 <>
                 {/* <button onClick={()=>{setRevealData(!revealData)}}>{data.name}</button>  */}
-                <button onClick={(e)=>{showMore(e, data.name, data.desc)}}>info</button> 
-                <>
-                </>
+                <button onClick={(e)=>{showMore(e, data.name, data.desc, data.code)}}>info</button> 
+                <div> hello
+                </div>
+                <div> hello again
+                </div>
                 </>
                 { !revealData ? <div style={{width: '500px'}}>...</div> : <> {moreData()} </> }
                 <button onClick={(e)=>deletePost(e, data.id)}> delete </button>  
