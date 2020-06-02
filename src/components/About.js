@@ -107,10 +107,10 @@ export const About = () => {
       <Box>
         <form>
           <h1> Submit a note</h1>
-      <p>name: <input value='name' value={state.currentName} onChange={e => setState({...state, currentName: e.target.value.toLowerCase()})} /></p>
-      <p>description: <input value='desc' value={state.currentDesc} onChange={e => setState({...state, currentDesc: e.target.value})}/></p>
-      <p>code: <input value='code' value={state.currentCode} onChange={e => setState({...state, currentCode: e.target.value})}/></p>
-      <p>genre: <input value='genre' value={state.currentGenre} onChange={e => setState({...state, currentGenre: e.target.value})}/></p>
+      <p>name: <input name='code' value={state.currentName} onChange={e => setState({...state, currentName: e.target.value.toLowerCase()})} /></p>
+      <p>description: <input name='desc' value={state.currentDesc} onChange={e => setState({...state, currentDesc: e.target.value})}/></p>
+      <p>code: <textarea  style={{width: '200px', height: '400px', textAlign: 'top'}} value={state.currentCode} onChange={e => setState({...state, currentCode: e.target.value})}/></p>
+      <p>genre: <input name='genre' value={state.currentGenre} onChange={e => setState({...state, currentGenre: e.target.value})}/></p>
           <button onClick={PostData}> submit </button>
         </form>
       </Box>
