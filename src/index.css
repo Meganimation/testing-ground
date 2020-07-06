@@ -1008,9 +1008,9 @@ a:focus {
 
 .flip-card {
   background-color: transparent;
-  width: 300px;
+  width: 550px;
   height: 200px;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #181313;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
@@ -1020,7 +1020,7 @@ a:focus {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.8s;
+  transition: transform 0.1s;
   transform-style: preserve-3d;
 }
 
@@ -1040,8 +1040,9 @@ a:focus {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #bbb;
-  color: black;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  text-align: center;
 }
 
 /* Style the back side */
@@ -1049,4 +1050,5 @@ a:focus {
   background-color: dodgerblue;
   color: white;
   transform: rotateY(180deg);
+ 
 }

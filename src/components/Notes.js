@@ -8,7 +8,6 @@ export const Note = (loading, data, searchResults, props) => {
 
     const Code = styled.div `
     font-family: arial;
-
 `
 
   const flipCardInner = styled.div `
@@ -69,7 +68,7 @@ let splitCode = code.split('  ')
 
 debugger
 return splitCode.map((code) => {
-    return <p style={{textAlign: 'left'}}>{code}</p>   
+    return <p style={{textAlign: 'center'}}>{code}</p>   
         }
     ) 
 }
