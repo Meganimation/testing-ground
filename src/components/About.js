@@ -10,11 +10,12 @@ const Box = styled.div `
   background-color: black; 
   border-color: green;
   width: 300px;
-  height: 400px;
+  height: 300px;
   position: absolute;
   left: 900px;
   top: 5%;
-  padding: 40px;
+  padding-bottom: 40%;
+  padding-right: 20%;
   color: white;
   `
   
@@ -44,6 +45,7 @@ export const About = () => {
   const [state, setState] = useState({currentName: '', currentDesc: '', currentCode: '', currentGenre: ''})
   const [searchResults, setSearchResults] = React.useState([])
   const [searchTerm, setSearchTerm] = React.useState("")
+  const [formToggle, setFormToggle] = React.useState(false)
 
 
   useEffect(() => {
@@ -51,6 +53,8 @@ export const About = () => {
       data.name.includes(searchTerm.toUpperCase())
     );setSearchResults(results);
   }, [searchTerm]);
+
+ 
 
 
   function PostData(){
@@ -89,6 +93,20 @@ export const About = () => {
         </NoteContainer>
         )
     }
+
+    const showForm=()=>{
+      if (formToggle === true) {
+        return(<Box>
+          <form>
+      <p>name: <input name='code' value={state.currentName} onChange={e => setState({...state, currentName: e.target.value.toLowerCase()})} /></p>
+      <p>description: <input name='desc' value={state.currentDesc} onChange={e => setState({...state, currentDesc: e.target.value})}/></p>
+      <p>code: <textarea  style={{width: '200px', height: '400px', textAlign: 'top'}} value={state.currentCode} onChange={e => setState({...state, currentCode: e.target.value})}/></p>
+      <p>genre: <input name='genre' value={state.currentGenre} onChange={e => setState({...state, currentGenre: e.target.value})}/></p>
+          <button onClick={PostData}> submit </button>
+        </form>
+      </Box>)
+      } 
+    }
     
     function handleChange(e){
         setSearchTerm(e.target.value)
@@ -104,16 +122,12 @@ export const About = () => {
       <input style={{width: '600px'}}onChange={handleChange} value={state.searchTerm}  type="text" placeholder="Search" />
       </SearchContainer>
 
-      <Box>
-        <form>
-          <h1> Submit a note</h1>
-      <p>name: <input name='code' value={state.currentName} onChange={e => setState({...state, currentName: e.target.value.toLowerCase()})} /></p>
-      <p>description: <input name='desc' value={state.currentDesc} onChange={e => setState({...state, currentDesc: e.target.value})}/></p>
-      <p>code: <textarea  style={{width: '200px', height: '400px', textAlign: 'top'}} value={state.currentCode} onChange={e => setState({...state, currentCode: e.target.value})}/></p>
-      <p>genre: <input name='genre' value={state.currentGenre} onChange={e => setState({...state, currentGenre: e.target.value})}/></p>
-          <button onClick={PostData}> submit </button>
-        </form>
-      </Box>
+      
+        
+          <button onClick={()=>setFormToggle(!formToggle)}> Submit a note</button>
+
+          <>{showForm()}</>
+
           <div>
             {loading ? '...' : printData()} 
           </div>
