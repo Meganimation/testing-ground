@@ -44,6 +44,7 @@ margin: 10px;
 const Content = styled.div `
 font-family: monospace;
 color: darkGreen;
+background-color: red;
 position: absolute;
 margin: 8%;
 margin-top: 12%;
@@ -51,8 +52,8 @@ top: 0px;
 text-align: center;
 display: center;
 z-index: 999999;
-padding-top: 50px;
-padding-left: 50px;
+padding-top: 0px;
+padding-left: 0px;
 
 `
 
@@ -141,7 +142,6 @@ const FakeButton = styled.div`
   margin-top: 18vh;
   border: 2px dashed;
 
-
   &:hover {
     animation: ${borderAnimationRule};
     background-color: ${borderAnimation};
@@ -171,32 +171,26 @@ width: 100%;
 
 
 <Router> 
-<FakeButton as="button" > <Link to='/' style={{color: 'white'}}> hooks  </Link>  </FakeButton>
-<br />
-<FakeButton as="button" > <Link to='/about' style={{color: 'white'}}> algorithms  </Link>  </FakeButton>
-<br />
-<FakeButton as="button" >  <Link to='/user/bigboi/mckenny' style={{color: 'white'}}> user  </Link>  </FakeButton>
+  <FakeButton as="button" > <Link to='/' style={{color: 'white'}}> hooks  </Link>  </FakeButton>
+    <br />
+  <FakeButton as="button" > <Link to='/about' style={{color: 'white'}}> notes  </Link>  </FakeButton>
+    <br />
+  <FakeButton as="button" >  <Link to='/user/bigboi/mckenny' style={{color: 'white'}}> user  </Link>  </FakeButton>
 
-
-  <Content>
+    <Content>
           <br />
-       
-
-            
             <Switch>
-            <Route  exact path='/about' component={About} />
+            <Route exact path='/about' component={About} />
             <Route exact path='/' component={Home}  />
             <Route exact path='/user/:firstname/:lastname' component={User}  />
             </Switch>
-     
-  
-          </Content>
-          </Router>
- 
+    </Content>
+  </Router>
 
 
 <StyleBox />
 <ExtendedComponent/>
+
 
 
 <DeprecatedWrapper >

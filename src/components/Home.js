@@ -15,7 +15,6 @@ export const Home = () => {
     const [refVisibility, setRefVisibility] = useState(false)
     const [formVisibility, setFormVisibility] = useState(false)
     const [useLayoutVisibility, setUseLayoutVisibility] = useState(false)
-  
     const dispatch = useDispatch()
     const comp = useSelector(state => state.comp)
 
@@ -31,7 +30,6 @@ const animation = keyframes`
 }
 `
 
-
 const animationRule = css`
   ${animation} 5s infinite alternate;
 `
@@ -44,8 +42,8 @@ const Box = styled.div `
   width: 300px;
   height: 400px;
   position: absolute;
-  right: -110%;
-  top: 5%;
+  right: -60%;
+  top: 5vh;
   text-align: center;
   display: center;
   padding: 40px;
