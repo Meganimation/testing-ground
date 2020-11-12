@@ -8,6 +8,74 @@ import Counter from './HookComponents/Counter';
 import UseLayout from './HookComponents/UseLayout';
 import { createGlobalStyle, css, keyframes } from 'styled-components'
 
+import PropTypes                 from 'prop-types';
+import withNarrowManager   from './ViewportManager';
+import Breakpoints from './Breakpoints';
+
+
+const propTypes = {
+  viewport: PropTypes.oneOf(["uhdDesktop",
+    "hdDesktop",
+    "largeDesktop",
+    "desktop",
+    "smallDesktop",
+    "tablet",
+    "mobile",
+    "smallMobile",
+  ]),
+};
+
+
+const textBoxWrapper = styled.div`
+  ${({viewport}) => textBox(viewport)};
+  color: red;
+  padding-left: 500px;
+`;
+
+const defaultProps = {
+  viewport: 'desktop',
+};
+
+
+const textBox = (viewport) => {
+  let bottom;
+  let right;
+  let width;
+  let color;
+  switch(viewport) {
+    case "smallMobile":
+      bottom="16px";
+      right="16px";
+      color="blue"
+      break;
+    case "mobile":
+      bottom="24px";
+      right="24px";
+      color="green"
+      break;
+    case "tablet":
+    case "smallDesktop":
+    case "desktop":
+    case "largeDesktop":
+    case "hdDesktop":
+    case "uhdDesktop": 
+      bottom="32px";
+      right="32px";
+      color="white"
+      break;
+    default:
+      bottom="16px";
+      right="16px";
+      color="red"
+  }
+  return`
+  bottom:${bottom};
+  right:${right};
+  color:${color};
+  `;
+};
+
+
 export const Home = () => {
 
     const [counterVisibility, setCounterVisibility] = useState(false)
@@ -17,6 +85,7 @@ export const Home = () => {
     const [useLayoutVisibility, setUseLayoutVisibility] = useState(false)
     const dispatch = useDispatch()
     const comp = useSelector(state => state.comp)
+
 
 
 const animation = keyframes`
@@ -33,10 +102,11 @@ const animation = keyframes`
 const animationRule = css`
   ${animation} 5s infinite alternate;
 `
+
+
   
   
-const Box = styled.div `
-  background-color: black; 
+const Box = styled.div ` 
   border: 1px dashed;
   border-color: green;
   width: 300px;
@@ -67,7 +137,7 @@ const Header = styled.nav `
 
 
 const Button = styled.button `
-  color: darkGreen;
+  color: ${({viewport}) => textBox(viewport)};
   font-family: monospace
   font-weight: 900px;
   background: black;
@@ -112,6 +182,7 @@ const Button = styled.button `
 
     return (
 <div>
+
   <Header >
       {hookButton(counterVisibility, setCounterVisibility, 'Counter')}
       <br />
@@ -123,6 +194,7 @@ const Button = styled.button `
   </Header>
 
   <>
+
   {counterVisibility ? <Box><Counter /></Box> : null}
   {formVisibility ? <Box><Form /></Box> : null}
   {cakeStoreVisibility ? <Box><CakeStore /></Box>  : null}

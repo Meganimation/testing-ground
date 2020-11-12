@@ -14,11 +14,58 @@ import {About} from './components/About'
 import {Home} from './components/Home'
 import {User} from './components/User'
 
+import viewportManager   from './components/ViewportManager';
 
 
+const defaultProps = {
+  viewport: 'desktop',
+};
 
 function App() {
 
+  const textBoxWrapper = styled.div`
+  ${({viewport}) => textBox(viewport)};
+`;
+
+
+
+const textBox = (viewport) => {
+  let bottom;
+  let right;
+  let width;
+  let color;
+  switch(viewport) {
+    case "smallMobile":
+      bottom="16px";
+      right="16px";
+      color="blue"
+      break;
+    case "mobile":
+      bottom="24px";
+      right="24px";
+      color="green"
+      break;
+    case "tablet":
+    case "smallDesktop":
+    case "desktop":
+    case "largeDesktop":
+    case "hdDesktop":
+    case "uhdDesktop": 
+      bottom="32px";
+      right="32px";
+      color="white"
+      break;
+    default:
+      bottom="16px";
+      right="16px";
+      color="purple"
+  }
+  return`
+  bottom:${bottom};
+  right:${right};
+  background-color:${color};
+  `;
+};
 
 
 const StyleBox = styled.div `
@@ -44,7 +91,7 @@ margin: 10px;
 const Content = styled.div `
 font-family: monospace;
 color: darkGreen;
-background-color: red;
+${({viewport}) => textBox(viewport)};
 position: absolute;
 margin: 8%;
 margin-top: 12%;
@@ -177,7 +224,7 @@ width: 100%;
     <br />
   <FakeButton as="button" >  <Link to='/user/bigboi/mckenny' style={{color: 'white'}}> user  </Link>  </FakeButton>
 
-    <Content>
+    <Content viewport={viewportManager.viewport}>
           <br />
             <Switch>
             <Route exact path='/about' component={About} />
