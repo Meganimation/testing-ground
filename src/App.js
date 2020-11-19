@@ -1,26 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle, css, keyframes } from 'styled-components'
-import {BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-
-
-import {About} from './components/About'
-import {Home} from './components/Home'
-import {User} from './components/User'
-
-
-
-import {device} from './components/Breakpoints';
-
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { About } from './components/About'
+import { Home } from './components/Home'
+import { User } from './components/User'
+import { device } from './components/Breakpoints';
 import './App.css';
 
 
 const defaultProps = {
-  viewport: 'desktop',
+  device: 'desktop',
 };
-
-
- 
 
 
 
@@ -62,53 +53,8 @@ margin: 10px;
 }
 `
 
+//The above is my preffered method of incorporating dynamic viewports. This is done through importing the breakpoints in 'Breakpoints.js' and then interpolating the values in these styled components. There's bare other ways to do it but this way is sick imo.
 
-
-function App() {
-
-  const textBoxWrapper = styled.div`
-  ${({viewport}) => textBox(viewport)};
-`;
-
-
-
-const textBox = (viewport) => {
-  let bottom;
-  let right;
-  let width;
-  let color;
-  switch(viewport) {
-    case "smallMobile":
-      bottom="16px";
-      right="16px";
-      color="blue"
-      break;
-    case "mobile":
-      bottom="24px";
-      right="24px";
-      color="green"
-      break;
-    case "tablet":
-    case "smallDesktop":
-    case "desktop":
-    case "largeDesktop":
-    case "hdDesktop":
-    case "uhdDesktop": 
-      bottom="32px";
-      right="32px";
-      color="white"
-      break;
-    default:
-      bottom="16px";
-      right="16px";
-      color="purple"
-  }
-  return`
-  bottom:${bottom};
-  right:${right};
-  background-color:${color};
-  `;
-};
 
 
 const StyleBox = styled.div `
@@ -117,7 +63,6 @@ color: red;
 border-size: 1px;
 border-color: white;
 width: 10px;
-height: 300px;
 position: absolute;
 left: 55%;
 top: 34%;
@@ -130,13 +75,12 @@ padding: 40px;
 const Content = styled.div `
 font-family: monospace;
 color: darkGreen;
-${({viewport}) => textBox(viewport)};
+background-color: yellow;
 position: absolute;
 margin: 8%;
 margin-top: 12%;
 top: 0px;
 text-align: center;
-display: center;
 z-index: 999999;
 padding-top: 0px;
 padding-left: 0px;
@@ -253,10 +197,12 @@ width: 100%;
 `
 
 
+function App() {
+
   return (
   <>
  <TestHeader> welcome to localhost:3000... </TestHeader>
- <h1 className='Responsive-Test' > welcome to localhost:3000... </h1>
+ <h1 className='Responsive-Test' > A place to test some logic... Plz don't judge my CSS </h1>
 
 <Router> 
   <FakeButton as="button" > <Link to='/' style={{color: 'white'}}> hooks  </Link>  </FakeButton>
@@ -266,7 +212,6 @@ width: 100%;
   <FakeButton as="button" >  <Link to='/user/bigboi/mckenny' style={{color: 'white'}}> user  </Link>  </FakeButton>
 
     <Content>
-          <br />
             <Switch>
             <Route exact path='/about' component={About} />
             <Route exact path='/' component={Home}  />

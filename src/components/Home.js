@@ -10,7 +10,8 @@ import { createGlobalStyle, css, keyframes } from 'styled-components'
 
 import PropTypes                 from 'prop-types';
 import withNarrowManager   from './ViewportManager';
-import Breakpoints from './Breakpoints';
+import { device } from './Breakpoints';
+
 
 
 const propTypes = {
@@ -26,54 +27,12 @@ const propTypes = {
 };
 
 
-const textBoxWrapper = styled.div`
-  ${({viewport}) => textBox(viewport)};
-  color: red;
-  padding-left: 500px;
-`;
-
 const defaultProps = {
   viewport: 'desktop',
 };
 
 
-const textBox = (viewport) => {
-  let bottom;
-  let right;
-  let width;
-  let color;
-  switch(viewport) {
-    case "smallMobile":
-      bottom="16px";
-      right="16px";
-      color="blue"
-      break;
-    case "mobile":
-      bottom="24px";
-      right="24px";
-      color="green"
-      break;
-    case "tablet":
-    case "smallDesktop":
-    case "desktop":
-    case "largeDesktop":
-    case "hdDesktop":
-    case "uhdDesktop": 
-      bottom="32px";
-      right="32px";
-      color="white"
-      break;
-    default:
-      bottom="16px";
-      right="16px";
-      color="red"
-  }
-  return`
-  bottom:${bottom};
-  right:${right};
-  color:${color};
-  `;
-};
+
 
 
 export const Home = () => {
@@ -107,6 +66,7 @@ const animationRule = css`
   
   
 const Box = styled.div ` 
+
   border: 1px dashed;
   border-color: green;
   width: 300px;
@@ -120,24 +80,48 @@ const Box = styled.div `
   color: white;
   z-index: 9;
   animation: ${animationRule};
+
+  @media ${device.mobile} { 
+    background-color: blue;
+    top: 20vh;
+    right: 50vh;
+    width: 300px;
+    height: 400px;
+  }
+
+  @media ${device.laptop} { 
+    background-color: green;
+    top: 5vh;
+    width: 300px;
+    height: 400px;
+    right: -60%;
+  }
   `
 
   
-const Header = styled.nav `
-  top: 90px;
-  width: 100%;
-  height: 300px;
-  position: sticky-left;
-  left: 0;
-  flex-direction: row;
-  flex: 8;
-  -webkit-box-align: center;
-  line-height: 13vh;
+const HookNavBar = styled.nav `
+background-color: red;
+
+@media ${device.mobile} { 
+  background-color: green;
+}
+
+@media ${device.tablet} { 
+  background-color: purple;
+}
+
+@media ${device.laptop} { 
+  background-color: blue;
+}
+
+@media ${device.largeDesktop} { 
+  background-color: lightBlue;
+}
 `
 
 
 const Button = styled.button `
-  color: ${({viewport}) => textBox(viewport)};
+  color: darkGreen;
   font-family: monospace
   font-weight: 900px;
   background: black;
@@ -183,7 +167,7 @@ const Button = styled.button `
     return (
 <div>
 
-  <Header >
+  <HookNavBar >
       {hookButton(counterVisibility, setCounterVisibility, 'Counter')}
       <br />
       {hookButton(refVisibility, setRefVisibility, 'Ref')}
@@ -191,7 +175,7 @@ const Button = styled.button `
       {hookButton(cakeStoreVisibility, setCakeStoreVisibility, 'Cake Store')}
       <br />
       {hookButton(useLayoutVisibility, setUseLayoutVisibility, 'useLayout')}
-  </Header>
+  </HookNavBar>
 
   <>
 
