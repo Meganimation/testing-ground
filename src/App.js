@@ -14,12 +14,61 @@ import {About} from './components/About'
 import {Home} from './components/Home'
 import {User} from './components/User'
 
-import viewportManager   from './components/ViewportManager';
+
+
+import {device} from './components/Breakpoints';
+
+import './App.css';
 
 
 const defaultProps = {
   viewport: 'desktop',
 };
+
+
+ 
+
+
+
+const TestHeader = styled.h1 `
+color: yellow;
+font-family: monospace;
+margin: 10px;
+
+@media ${device.smallMobile} { 
+  color: blue;
+}
+
+@media ${device.mobile} { 
+  color: red;
+}
+
+@media ${device.largeMobile} { 
+  color: green;
+}
+
+@media ${device.tablet} { 
+  color: purple;
+}
+
+@media ${device.laptop} { 
+  color: orange;
+}
+
+@media ${device.largeLaptop} { 
+  color: darkBlue;
+}
+
+@media ${device.desktop} { 
+  color: blue;
+}
+
+@media ${device.largeDesktop} { 
+  color: white;
+}
+`
+
+
 
 function App() {
 
@@ -82,11 +131,7 @@ text-align: center;
 display: center;
 padding: 40px;
 `
-const TestHeader = styled.h1 `
-color: green;
-font-family: monospace;
-margin: 10px;
-`
+
 
 const Content = styled.div `
 font-family: monospace;
@@ -101,6 +146,9 @@ display: center;
 z-index: 999999;
 padding-top: 0px;
 padding-left: 0px;
+@media (max-width: 168px) {
+  color: blue;
+}
 
 `
 
@@ -208,14 +256,13 @@ font-family: monospace;
 const RouterNav = styled.nav`
 text-align: center;
 width: 100%;
-
-
-
 `
+
+
   return (
   <>
  <TestHeader> welcome to localhost:3000... </TestHeader>
-
+ <h1 className='Responsive-Test' > welcome to localhost:3000... </h1>
 
 <Router> 
   <FakeButton as="button" > <Link to='/' style={{color: 'white'}}> hooks  </Link>  </FakeButton>
@@ -224,7 +271,7 @@ width: 100%;
     <br />
   <FakeButton as="button" >  <Link to='/user/bigboi/mckenny' style={{color: 'white'}}> user  </Link>  </FakeButton>
 
-    <Content viewport={viewportManager.viewport}>
+    <Content>
           <br />
             <Switch>
             <Route exact path='/about' component={About} />

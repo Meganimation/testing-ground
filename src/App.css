@@ -38,3 +38,14 @@
 }
 
 
+/* .Responsive-Test{
+  color: #ff0022;
+}
+
+@media screen and (max-width: 400px){
+  .Responsive-Test{
+    color: #00ff4c;
+  }  
+} */
+
+/* The above is used to create dynamic viewports. */
