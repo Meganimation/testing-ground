@@ -14,7 +14,6 @@ const defaultProps = {
 };
 
 
-
 const TestHeader = styled.h1 `
 color: yellow;
 font-family: monospace;
@@ -57,19 +56,6 @@ margin: 10px;
 
 
 
-const StyleBox = styled.div `
-background: darkGreen;
-color: red;
-border-size: 1px;
-border-color: white;
-width: 10px;
-position: absolute;
-left: 55%;
-top: 34%;
-text-align: center;
-display: center;
-padding: 40px;
-`
 
 
 const Content = styled.div `
@@ -129,61 +115,83 @@ const animation = keyframes`
 }
 `
 
-const borderAnimation = keyframes`
-  0% {
-    opacity: 1;
-    padding-left: 10px;
-    border: 2px dashed;
-    color: darkGreen;
-  }
- n 
-  100% {
-    opacity: 1;
-    top: 0px;
-    padding-left: 30px;
-    border: 2px dotted;
-    letter-spacing: 20px;
-    color: green;
-  }
-}
-`
+
+
 const animationRule = css`
   ${animation} 5s infinite alternate;
 `
 
-const borderAnimationRule = css`
-  ${borderAnimation} 1s infinite alternate;
+const StyleBox = styled.div `
+  background: red;
+  width: 10px;
+  height: 200px;
+  position: absolute;
+  left: 55%;
+  top: 34%;
+  text-align: center;
+  display: center;
+  padding: 40px;
 `
 
 const ExtendedComponent = styled(StyleBox)`
   background-color: black;
   animation: ${animationRule};
-  top: 0;
-  right: 0;
-  position: absolute:
-  height: 900px;
 `
 
 // the animation keyframes reduce/increase the opacity. The animationRule links to animation keyframe and determines how its going to animate. ExtendedComponent is an extension of StyleBox. It overrides its background color. When the animation reaches 0% opacity, it shows the components background underneath it.
 
-const FakeButton = styled.div`
+
+const borderAnimation = keyframes`
+  50% {
+    opacity: 1;
+    border: 2px dotted;
+    color: green;
+    letter-spacing: 1px;
+  }
+  
+  100% {
+    opacity: 1;
+    top: 0px;
+    padding-left: 15px;
+    border: 2px dashed;
+    letter-spacing: 2px;
+    color: green;
+  }
+}
+`
+
+const borderAnimationRule = css`
+  ${borderAnimation} 0.5s infinite alternate;
+`
+
+
+const DivButton = styled.div`
   color: green;
   background-color: darkGreen;
   padding: 10px;
   font-family: monospace;
   top: 0px;
   margin-top: 18vh;
-  border: 2px dashed;
+  border: 2px dotted;
+  border-radius: 30px;
+  z-index: 999999;
+  letter-spacing: 1px;
 
   &:hover {
     animation: ${borderAnimationRule};
-    background-color: ${borderAnimation};
+    letter-spacing: 1px;
   }
 `;
 // this is just a div for now... Check the JSX to see how it becomes a button
 
 
-const DeprecatedWrapper = styled.div`
+const DivButtonNav = styled.nav`
+display: block;
+width: 60px;
+`;
+
+
+const DeprecatedWrapper = styled.marquee`
 font-family: monospace;
   color: green;
   padding: 10px;
@@ -191,44 +199,40 @@ font-family: monospace;
   margin-top: 10vh;
 `;
 
-const RouterNav = styled.nav`
-text-align: center;
-width: 100%;
-`
-
 
 function App() {
 
   return (
-  <>
- <TestHeader> welcome to localhost:3000... </TestHeader>
- <h1 className='Responsive-Test' > A place to test some logic... Plz don't judge my CSS </h1>
+    <>
+    <TestHeader> welcome to localhost:3000... </TestHeader>
+      <h1 className='Responsive-Test' > Plz don't judge my CSS </h1>
 
-<Router> 
-  <FakeButton as="button" > <Link to='/' style={{color: 'white'}}> hooks  </Link>  </FakeButton>
-    <br />
-  <FakeButton as="button" > <Link to='/about' style={{color: 'white'}}> notes  </Link>  </FakeButton>
-    <br />
-  <FakeButton as="button" >  <Link to='/user/bigboi/mckenny' style={{color: 'white'}}> user  </Link>  </FakeButton>
+    <Router> 
+      <DivButtonNav>
+         <DivButton as="button" > <Link to='/hooks' style={{color: 'lightGreen'}}> hooks  </Link>  </DivButton>
+         <DivButton as="button" > <Link to='/about' style={{color: 'lightGreen'}}> notes  </Link>  </DivButton>
+         <DivButton as="button" > <Link to='/user/bigboi/mckenny' style={{color: 'lightGreen'}}> user  </Link>  </DivButton>
+     </DivButtonNav>
 
-    <Content>
+      <Content>
             <Switch>
-            <Route exact path='/about' component={About} />
-            <Route exact path='/' component={Home}  />
-            <Route exact path='/user/:firstname/:lastname' component={User}  />
+              <Route exact path='/about' component={About} />
+              <Route exact path='/hooks' component={Home}  />
+              <Route exact path='/user/:firstname/:lastname' component={User}  /> 
+            {/* bug alert */}
             </Switch>
-    </Content>
-  </Router>
+      </Content>
+    </Router>
 
 
-<StyleBox />
-<ExtendedComponent/>
+  <StyleBox />
+  <ExtendedComponent/>
+  {/* The above are some testing components for animation - something I need to look a little bit further into */}
 
 
-
-<DeprecatedWrapper >
-<marquee>shoutout to ryan</marquee>
-</DeprecatedWrapper >
+  <DeprecatedWrapper>
+    Shoutout to Ryan for the sick marquee
+  </DeprecatedWrapper>
 </>
   );
 }
