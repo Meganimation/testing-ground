@@ -35,7 +35,7 @@ const defaultProps = {
 
 
 
-export const Home = () => {
+export const HooksPage = () => {
 
     const [counterVisibility, setCounterVisibility] = useState(false)
     const [cakeStoreVisibility, setCakeStoreVisibility] = useState(false)
@@ -101,6 +101,8 @@ const Box = styled.div `
   
 const HookNavBar = styled.nav `
 background-color: red;
+display: block;
+width: 50%;
 
 @media ${device.mobile} { 
   background-color: green;
@@ -167,13 +169,13 @@ const Button = styled.button `
     return (
 <div>
 
-  <HookNavBar >
+  <HookNavBar>
       {hookButton(counterVisibility, setCounterVisibility, 'Counter')}
-      <br />
+
       {hookButton(refVisibility, setRefVisibility, 'Ref')}
       {hookButton(formVisibility, setFormVisibility, 'Form')}
       {hookButton(cakeStoreVisibility, setCakeStoreVisibility, 'Cake Store')}
-      <br />
+
       {hookButton(useLayoutVisibility, setUseLayoutVisibility, 'useLayout')}
   </HookNavBar>
 

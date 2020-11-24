@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle, css, keyframes } from 'styled-components'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import { About } from './components/About'
-import { Home } from './components/Home'
+import { NotesPage } from './components/NotesPage'
+import { HooksPage } from './components/HooksPage'
 import { User } from './components/User'
 import { device } from './components/Breakpoints';
 import './App.css';
@@ -61,7 +61,6 @@ margin: 10px;
 const Content = styled.div `
 font-family: monospace;
 color: darkGreen;
-background-color: yellow;
 position: absolute;
 margin: 8%;
 margin-top: 12%;
@@ -186,6 +185,8 @@ const DivButton = styled.div`
 
 
 const DivButtonNav = styled.nav`
+position: fixed;
+top: 10%;
 display: block;
 width: 60px;
 `;
@@ -210,14 +211,14 @@ function App() {
     <Router> 
       <DivButtonNav>
          <DivButton as="button" > <Link to='/hooks' style={{color: 'lightGreen'}}> hooks  </Link>  </DivButton>
-         <DivButton as="button" > <Link to='/about' style={{color: 'lightGreen'}}> notes  </Link>  </DivButton>
+         <DivButton as="button" > <Link to='/notes' style={{color: 'lightGreen'}}> notes  </Link>  </DivButton>
          <DivButton as="button" > <Link to='/user/bigboi/mckenny' style={{color: 'lightGreen'}}> user  </Link>  </DivButton>
      </DivButtonNav>
 
       <Content>
             <Switch>
-              <Route exact path='/about' component={About} />
-              <Route exact path='/hooks' component={Home}  />
+              <Route exact path='/notes' component={NotesPage} />
+              <Route exact path='/hooks' component={HooksPage}  />
               <Route exact path='/user/:firstname/:lastname' component={User}  /> 
             {/* bug alert */}
             </Switch>

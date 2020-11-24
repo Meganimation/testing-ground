@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import {Note} from './Notes'
+import { Note } from './Notes'
 import { useFetch } from "./useFetch";
 
 
@@ -21,7 +21,8 @@ const Box = styled.div `
   
   
 const NoteContainer = styled.div `
-  background-color: black; 
+  background-color: blue; 
+  position: absolute;
   padding-top: 30px;
   color: white;
   max-width: 600px;
@@ -37,7 +38,7 @@ const SearchContainer = styled.div `
   `
 
 
-export const About = () => {
+export const NotesPage = () => {
 
   const counter = useSelector(state => state.name)
   const name = useSelector(state => state.counter)
@@ -74,16 +75,7 @@ export const About = () => {
           .then(console.log(state.name))
         return null 
       }
-
-        //    <div>
-        //  {data.map((data)=>{
-        // return (
-        //     <div> hello {name} + {counter} + {data.id}
-        // <Card>
-  
-        //     <Note  id={data.id} name={data.name} desc={data.desc} code={data.code} genre={data.genre} />
-        // </Card>
-        //     </div>)})}
+      
 
   const printData=()=>{
     console.log(searchResults)
@@ -108,7 +100,7 @@ export const About = () => {
       } 
     }
     
-    function handleChange(e){
+    function handleSearchInputChange(e){
         setSearchTerm(e.target.value)
     }
 
@@ -116,21 +108,16 @@ export const About = () => {
     return (
     <>
       <SearchContainer>
-            Search Notes:
-        <br />
-        <br />
-      <input style={{width: '600px'}}onChange={handleChange} value={state.searchTerm}  type="text" placeholder="Search" />
+        <h1>Search Notes:</h1>
+        <input style={{width: '600px'}} onChange={handleSearchInputChange} value={state.searchTerm}  type="text" placeholder="Search" />
       </SearchContainer>
 
-      
-        
-          <button onClick={()=>setFormToggle(!formToggle)}> Submit a note</button>
+      <button onClick={()=>setFormToggle(!formToggle)}> Submit a note</button>
+      <>{showForm()}</>
 
-          <>{showForm()}</>
-
-          <div>
-            {loading ? '...' : printData()} 
-          </div>
-        </>
+      <div>
+        {loading ? '...' : printData()} 
+      </div>
+    </>
     )
 }
