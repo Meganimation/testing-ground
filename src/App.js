@@ -185,10 +185,10 @@ const DivButton = styled.div`
 
 
 const DivButtonNav = styled.nav`
-position: fixed;
-top: 10%;
-display: block;
-width: 60px;
+  position: fixed;
+  top: 10%;
+  display: block;
+  width: 60px;
 `;
 
 
