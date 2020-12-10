@@ -1,35 +1,13 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Form from './HookComponents/Form';
 import CakeStore from './HookComponents/CakeStore';
 import Ref from './HookComponents/Ref';
 import Counter from './HookComponents/Counter';
 import UseLayout from './HookComponents/UseLayout';
-import { createGlobalStyle, css, keyframes } from 'styled-components'
-
-import PropTypes                 from 'prop-types';
-import withNarrowManager   from './ViewportManager';
+import { css, keyframes } from 'styled-components'
 import { device } from './Breakpoints';
 
-
-
-const propTypes = {
-  viewport: PropTypes.oneOf(["uhdDesktop",
-    "hdDesktop",
-    "largeDesktop",
-    "desktop",
-    "smallDesktop",
-    "tablet",
-    "mobile",
-    "smallMobile",
-  ]),
-};
-
-
-const defaultProps = {
-  viewport: 'desktop',
-};
 
 
 
@@ -42,8 +20,6 @@ export const HooksPage = () => {
     const [refVisibility, setRefVisibility] = useState(false)
     const [formVisibility, setFormVisibility] = useState(false)
     const [useLayoutVisibility, setUseLayoutVisibility] = useState(false)
-    const dispatch = useDispatch()
-    const comp = useSelector(state => state.comp)
 
 
 
@@ -66,6 +42,7 @@ const animationRule = css`
   
   
 const Box = styled.div ` 
+
 
   border: 1px dashed;
   border-color: green;
@@ -148,21 +125,23 @@ const Button = styled.button `
 
   function hookButton(theState, settingState, name) {
     switch(theState) {
-      case counterVisibility:
-        return (  <Button onClick={(e) =>  settingState(!theState)} >{name}  {theState ? <p>ON</p> : <p>OFF</p>} </Button> )
-          break;
+        case counterVisibility:
+          return (  <Button onClick={(e) =>  settingState(!theState)} >{name}  {theState ? <p>ON</p> : <p>OFF</p>} </Button> )
+
         case refVisibility:
           return ( <Button onClick={(e) => settingState(!theState)} >{name}  {theState ? <p>ON</p> : <p>OFF</p>} </Button> )
-        break;
+
         case formVisibility:
           return ( <Button onClick={(e) => settingState(!theState)} >{name}  {theState ? <p>ON</p> : <p>OFF</p>} </Button> )
-        break;
+
         case cakeStoreVisibility:
           return ( <Button onClick={(e) => settingState(!theState)} >{name}  {theState ? <p>ON</p> : <p>OFF</p>} </Button> )
-        break;
+
         case useLayoutVisibility:
           return ( <Button onClick={(e) => settingState(!theState)} >{name}  {theState ? <p>ON</p> : <p>OFF</p>} </Button> )
-        break;
+
+        default:
+          return null
     }
   }
 

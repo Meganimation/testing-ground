@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components';
 
 
-{/* <input style={{padding: '0px', borderColor: 'green', backgroundColor: 'black', color: 'green'}}type='name' value={currentName} onChange={e => setName(e.target.value)} /> */}
-
 
 const HookInputStyle = styled.input`
 
@@ -14,7 +12,6 @@ word-spacing: 3px;
 color: green;
 background-color: black;
 border-color; green;
-
 
         &:hover {
             color: lightGreen;

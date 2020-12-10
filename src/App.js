@@ -9,11 +9,6 @@ import { device } from './components/Breakpoints';
 import './App.css';
 
 
-const defaultProps = {
-  device: 'desktop',
-};
-
-
 const TestHeader = styled.h1 `
 color: yellow;
 font-family: monospace;
@@ -94,8 +89,6 @@ const GlobalStyle = createGlobalStyle`
     a {
       color: white;
     }
-
-  
 `
 
 // the createGlobalStyle API allows us to change the styling of an entire page by its tag
@@ -228,6 +221,7 @@ function App() {
 
   <StyleBox />
   <ExtendedComponent/>
+  <GlobalStyle />
   {/* The above are some testing components for animation - something I need to look a little bit further into */}
 
 

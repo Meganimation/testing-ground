@@ -1,4 +1,4 @@
-import React, { Component, useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 
 const UseLayout=()=> {
 

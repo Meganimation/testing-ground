@@ -1,7 +1,5 @@
-import React from 'react';
-import PropTypes from "prop-types";
 import enquire from 'enquire.js';
-// import { Breakpoints } from './Breakpoints';
+
 
 
 

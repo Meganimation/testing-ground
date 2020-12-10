@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import {useFetch} from './useFetch'
+import React from "react";
 import styled from 'styled-components';
-import HookButton from './hookButton'
 
 
 export const Note = (loading, data, searchResults, props) => {
@@ -40,7 +38,6 @@ const NoteBox = styled.div `
 
 const Notes = () => {
 
-    const [revealData, setRevealData] = useState(true)
     const showCode=(code)=>{
         let splitCode = code.split('  ')
         return splitCode.map((code) => {
@@ -69,7 +66,6 @@ const Notes = () => {
                 </div>
                 </div>
                 </div>
-                {/* { !revealData ? <div style={{width: '500px'}}>...</div> : <> {moreData()} </> } */}
             </NoteBox> 
             )}
             ))
