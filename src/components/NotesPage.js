@@ -76,7 +76,6 @@ export const NotesPage = () => {
           .then(console.log(state.name))
         return null 
       }
-      
 
   const printData=()=>{
     console.log(searchResults)
