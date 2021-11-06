@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import HookButton from '../hookButton'
+import CustomButton from '../CustomButton'
 import HookHeader from '../hookHeader'
 
 export default function CakeStore() {
@@ -25,9 +25,9 @@ export default function CakeStore() {
         <>
         <HookHeader text={`Number of Cakes: ${numOfCakes}`}>  Number of Cakes: {numOfCakes} </HookHeader>
             <br />
-            < HookButton  text={'buy 1 cake'} onClick={buyCake} />
+            < CustomButton  text={'buy 1 cake'} onClick={buyCake} />
             <br />
-            < HookButton  text={'sell 1 cake'} onClick={sellCake}>Sell 1 Cake</HookButton >
+            < CustomButton  text={'sell 1 cake'} onClick={sellCake}>Sell 1 Cake</CustomButton >
             <br/>
             <br/>
             <br/>

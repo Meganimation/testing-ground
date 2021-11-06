@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 
 
-const HookButtonStyle = styled.button`
+const ButtonStyle = styled.button`
 padding: 7px;
 color: lightGreen;
 background-color: black;
@@ -16,10 +16,10 @@ margin-top: 5px;
         }
 `
 
-const HookButton=({onClick, text, ...props})=> {
+const CustomButton=({onClick, text, children, ...props})=> {
     return (
-    <HookButtonStyle onClick={onClick}>{text}</HookButtonStyle>
+    <ButtonStyle onClick={onClick}>{children}</ButtonStyle>
     )
 }
 
-export default HookButton
+export default CustomButton

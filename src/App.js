@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { createGlobalStyle, css, keyframes } from 'styled-components'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import { NotesPage } from './components/NotesPage'
-import { HooksPage } from './components/HooksPage'
+import { NotesPage } from './pages/NotesPage'
+import { HooksPage } from './pages/HooksPage'
 import { User } from './components/User'
-import { device } from './components/Breakpoints';
+import { device } from './utils/Breakpoints';
 import './App.css';
 
 
@@ -185,15 +185,6 @@ const DivButtonNav = styled.nav`
 `;
 
 
-const DeprecatedWrapper = styled.marquee`
-font-family: monospace;
-  color: green;
-  padding: 10px;
-  top: 80vh;
-  margin-top: 10vh;
-`;
-
-
 function App() {
 
   return (
@@ -225,9 +216,6 @@ function App() {
   {/* The above are some testing components for animation - something I need to look a little bit further into */}
 
 
-  <DeprecatedWrapper>
-    Shoutout to Ryan for the sick marquee
-  </DeprecatedWrapper>
 </>
   );
 }

@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import HookButton from '../hookButton'
+import CustomButton from '../CustomButton'
 import HookHeader from '../hookHeader'
 import HookInput from '../hookInput'
 
@@ -20,14 +20,14 @@ const Counter = () => {
         <HookInput type='text' value={number} onChange={(e) => setNumber(e.target.value)} />  
     <br />  
     <br />
-        <HookButton text={`add ${number} things`}onClick={()=> dispatch({type: "ANYAMOUNT", info: 'adds the amount entered via input', payload: number})}> add {number} things </HookButton>
+        <CustomButton text={`add ${number} things`}onClick={()=> dispatch({type: "ANYAMOUNT", info: 'adds the amount entered via input', payload: number})}> add {number} things </CustomButton>
     <br />
     <br />
-        <HookButton text={'+1'} onClick={()=> dispatch({type: INCREMENT})}> +1 </HookButton> 
-        <HookButton text={'-1'} onClick={()=> dispatch({type: "DECREMENT"})}> -1 </HookButton>
+        <CustomButton text={'+1'} onClick={()=> dispatch({type: INCREMENT})}> +1 </CustomButton> 
+        <CustomButton text={'-1'} onClick={()=> dispatch({type: "DECREMENT"})}> -1 </CustomButton>
     <br /> 
     <br />
-    <HookButton text={'reset'} onClick={()=> dispatch({type: "DEFAULT", info: 'resets the counter to default'})}> reset </HookButton>
+    <CustomButton text={'reset'} onClick={()=> dispatch({type: "DEFAULT", info: 'resets the counter to default'})}> reset </CustomButton>
 
 </>)
 }

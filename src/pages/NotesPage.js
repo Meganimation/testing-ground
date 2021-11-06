@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
-import { Note } from './Notes'
-import { useFetch } from "./useFetch";
+import { Note } from '../components/Notes'
+import { useFetch } from "../components/customhooks/useFetch";
 
 
 const FormBox = styled.div `

@@ -1,6 +1,6 @@
 import React,{useRef, useEffect} from 'react'
 import {useParams, useLocation, useHistory} from 'react-router'
-import HookButton from './hookButton'
+import CustomButton from './CustomButton'
 
 export const User = () => {
     
@@ -55,7 +55,7 @@ export const User = () => {
              <br />
              <input ref={lastNameRef} onKeyDown={lastKeyDown}  type='text' placeholder='last name' />
              <br />
-             <HookButton  ref={submitRef} onKeyDown={submitKeyDown}  >Submit</HookButton >
+             <CustomButton  ref={submitRef} onKeyDown={submitKeyDown}  >Submit</CustomButton >
             This is the user page, who's name is {firstname} {lastname}.
             <br />
             This is done by using the useParams hook
@@ -65,7 +65,7 @@ export const User = () => {
           Location info: check the console.
           History infor: check the console.
           <br />
-          <HookButton  onClick={()=>{history.goBack()}}>Go back</HookButton >
+          <CustomButton  onClick={()=>{history.goBack()}}>Go back</CustomButton >
         </div>
     )
 }
