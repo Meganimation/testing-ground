@@ -37,11 +37,11 @@ export const HooksPage = () => {
   const Box = styled.div`
     border: 1px dashed;
     border-color: green;
-    width: 300px;
+
     height: 400px;
-    position: absolute;
-    right: -10%;
-    top: 5vh;
+    justify-content: center;
+    margin-left: 35%;
+
     text-align: center;
     display: center;
     padding: 40px;
@@ -60,15 +60,15 @@ export const HooksPage = () => {
     @media ${device.laptop} {
       background-color: green;
       top: 5vh;
-      width: 300px;
       height: 400px;
     }
   `;
 
   const HookNavBar = styled.nav`
     background-color: red;
-    display: block;
-    width: 50%;
+
+
+    width: 100%;
     display: ${({ toggleCustomHookComponent }) =>
       toggleCustomHookComponent ? "block" : "none"};
 
@@ -183,16 +183,9 @@ export const HooksPage = () => {
             "Cake Store"
           )}
           {hookButton(useLayoutVisibility, setUseLayoutVisibility, "useLayout")}
-          <CustomButton
-            onClick={() => {
-              showCustomHook();
-            }}
-          >
-            Show Custom Hooks
-          </CustomButton>
-        </HookNavBar>
+   
 
-        <>
+          <>
           {counterVisibility ? (
             <Box>
               <Counter />
@@ -219,6 +212,16 @@ export const HooksPage = () => {
             </Box>
           ) : null}
         </>
+        <CustomButton
+            onClick={() => {
+              showCustomHook();
+            }}
+          >
+            Show Custom Hooks
+          </CustomButton>
+        </HookNavBar>
+
+
       </div>
     );
 };

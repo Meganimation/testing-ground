@@ -57,13 +57,10 @@ const Content = styled.div `
 font-family: monospace;
 color: darkGreen;
 position: absolute;
-margin: 8%;
-margin-top: 12%;
 top: 0px;
 text-align: center;
-z-index: 999999;
-padding-top: 0px;
-padding-left: 0px;
+margin: 10%;
+
 @media (max-width: 168px) {
   color: blue;
 }
@@ -114,12 +111,11 @@ const animationRule = css`
 `
 
 const StyleBox = styled.div `
-  background: red;
+  background: green;
   width: 10px;
   height: 200px;
   position: absolute;
-  left: 55%;
-  top: 34%;
+  left: 90%;
   text-align: center;
   display: center;
   padding: 40px;
@@ -163,11 +159,11 @@ const DivButton = styled.div`
   padding: 10px;
   font-family: monospace;
   top: 0px;
-  margin-top: 18vh;
   border: 2px dotted;
   border-radius: 30px;
   z-index: 999999;
   letter-spacing: 1px;
+  margin-top: 20px;
 
   &:hover {
     animation: ${borderAnimationRule};
@@ -179,21 +175,37 @@ const DivButton = styled.div`
 
 const DivButtonNav = styled.nav`
   position: fixed;
-  top: 10%;
   display: block;
-  width: 60px;
+  width: 20px;
+  justify-items: space-between;
+  margin-top: 20vh;
+  height: 100vh;
+  z-index: 2;
+  
 `;
 
+function HomePage() {
+
+  return <>
+    <TestHeader> welcome to localhost:3000... </TestHeader>
+      <h1 className='Responsive-Test' > Plz don't judge my CSS </h1>
+
+      <StyleBox />
+  <ExtendedComponent/>
+  <GlobalStyle />
+  {/* The above are some testing components for animation - something I need to look a little bit further into */}
+      </>
+}
 
 function App() {
 
   return (
     <>
-    <TestHeader> welcome to localhost:3000... </TestHeader>
-      <h1 className='Responsive-Test' > Plz don't judge my CSS </h1>
+  
 
     <Router> 
       <DivButtonNav>
+      <DivButton as="button" > <Link to='/' style={{color: 'lightGreen'}}> home  </Link>  </DivButton>
          <DivButton as="button" > <Link to='/hooks' style={{color: 'lightGreen'}}> hooks  </Link>  </DivButton>
          <DivButton as="button" > <Link to='/notes' style={{color: 'lightGreen'}}> notes  </Link>  </DivButton>
          <DivButton as="button" > <Link to='/user/bigboi/mckenny' style={{color: 'lightGreen'}}> user  </Link>  </DivButton>
@@ -201,6 +213,7 @@ function App() {
 
       <Content>
             <Switch>
+            <Route exact path='/' component={HomePage} />
               <Route exact path='/notes' component={NotesPage} />
               <Route exact path='/hooks' component={HooksPage}  />
               <Route exact path='/user/:firstname/:lastname' component={User}  /> 
@@ -210,10 +223,7 @@ function App() {
     </Router>
 
 
-  <StyleBox />
-  <ExtendedComponent/>
-  <GlobalStyle />
-  {/* The above are some testing components for animation - something I need to look a little bit further into */}
+
 
 
 </>
