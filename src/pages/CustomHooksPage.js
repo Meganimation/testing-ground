@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useFetch } from "../components/customhooks/useFetch";
 import useToggle from "../components/customhooks/useToggle";
 import useTimeout from "../components/customhooks/useTimeout";
 import useDebounce from "../components/customhooks/useDebounce";
+import useUpdateEffect from "../components/customhooks/useUpdateEffect";
 
 const Section = styled.section`
 z-index: -1;
@@ -70,10 +71,8 @@ const CustomHookWrapper = styled.div`
     }
 `;
 
-
 const URL =
   "https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json&tzshift=0";
-
 
 export default function CustomHooksPage({
   setToggleCustomHookComponent,
@@ -85,6 +84,7 @@ export default function CustomHooksPage({
     showUseToggle: false,
     showUseTimeout: false,
     showUseDebounce: false,
+    showUseUpdateEffect: false,
   });
 
   function revealHook() {
@@ -134,35 +134,53 @@ export default function CustomHooksPage({
     };
 
     function TimeoutComponent() {
-      const [count, setCount] = useState(10)
-      const { clear, reset } = useTimeout(() => setCount(0), 1000)
-    
+      const [count, setCount] = useState(10);
+      const { clear, reset } = useTimeout(() => setCount(0), 1000);
+
       return (
         <CustomHookWrapper>
           <div>{count}</div>
-          <button onClick={() => setCount(c => c + 1)}>Increment</button>
+          <button onClick={() => setCount((c) => c + 1)}>Increment</button>
           <button onClick={clear}>Clear Timeout</button>
           <button onClick={reset}>Reset Timeout</button>
         </CustomHookWrapper>
-      )
+      );
     }
 
+    function DebounceComponent() {
+      const [count, setCount] = useState(10);
+      const [seconds, setSeconds] = useState(300);
+      useDebounce(() => alert(count), seconds, [count]);
 
- function DebounceComponent() {
-  const [count, setCount] = useState(10)
-  const [seconds, setSeconds] = useState(300)
-  useDebounce(() => alert(count), seconds, [count])
+      return (
+        <CustomHookWrapper>
+          <h3>
+            A hook that debounces a function, you can modify this in state.
+            There is {seconds} milliseconds in state (needs the useTimeout
+            custom hook)
+          </h3>
+          <div>{count}</div>
+          <button onClick={() => setCount((c) => c + 1)}>
+            Increment something pointless
+          </button>
+          <button onClick={() => setSeconds(5000)}>
+            change to 5 seconds instead
+          </button>
+        </CustomHookWrapper>
+      );
+    }
 
-  return (
-    <CustomHookWrapper>
-      <h3>A hook that debounces a function, you can modify this in state. There is {seconds} milliseconds in state (needs the useTimeout custom hook)</h3> 
-      <div>{count}</div>
-      <button onClick={() => setCount(c => c + 1)}>Increment something pointless</button>
-      <button onClick={() => setSeconds(5000)}>change to 5 seconds instead</button>
- 
-    </CustomHookWrapper>
-  )
- }
+    function UpdateEffectComponent() {
+      const [count, setCount] = useState(10);
+      useUpdateEffect(() => alert(count), [count]);
+
+      return (
+        <div>
+          <div>{count}</div>
+          <button onClick={() => setCount((c) => c + 1)}>Increment</button>
+        </div>
+      );
+    }
 
     //Conditionals to check which hook to show
 
@@ -175,10 +193,12 @@ export default function CustomHooksPage({
             return setState({ showUseArray: false });
           case "showUseToggle":
             return setState({ showUseToggle: false });
-            case "showUseTimeout":
-              return setState({ showUseTimeout: false });
-              case "showUseDebounce":
-                return setState({ showUseDebounce: false });
+          case "showUseTimeout":
+            return setState({ showUseTimeout: false });
+          case "showUseDebounce":
+            return setState({ showUseDebounce: false });
+          case "showUpdateEffect":
+            return setState({ showUpdateEffect: false });
           default:
             return null;
         }
@@ -206,8 +226,12 @@ export default function CustomHooksPage({
 
     if (state.showUseToggle) return backButton(<Toggle />, "showUseToggle");
 
-    if (state.showUseTimeout) return backButton(<TimeoutComponent />, "showUseTimeout");
-    if (state.showUseDebounce) return backButton(<DebounceComponent />, "showUseDebounce");
+    if (state.showUseTimeout)
+      return backButton(<TimeoutComponent />, "showUseTimeout");
+    if (state.showUseDebounce)
+      return backButton(<DebounceComponent />, "showUseDebounce");
+    if (state.showUpdateEffect)
+      return backButton(<UpdateEffectComponent />, "showUpdateEffect");
   }
 
   return (
@@ -253,6 +277,14 @@ export default function CustomHooksPage({
           }}
         >
           useDebounce
+        </button>
+
+        <button
+          onClick={() => {
+            setState({ showUpdateEffect: true });
+          }}
+        >
+          useUpdateEffect
         </button>
 
         <button
