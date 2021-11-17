@@ -7,6 +7,8 @@ import { HooksPage } from "./pages/HooksPage";
 import { User } from "./components/User";
 import { device } from "./utils/Breakpoints";
 import "./App.css";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import fakeData from "./fakeData.json";
 
 const TestHeader = styled.h1`
   color: yellow;
@@ -169,7 +171,6 @@ const DivButtonNav = styled.nav`
   z-index: 2;
 `;
 
-
 //create a styled component that takes up all the space on the page
 const DraggablePage = styled.section`
   position: absolute;
@@ -178,14 +179,151 @@ const DraggablePage = styled.section`
   width: 80vw;
   height: 80vh;
   background-color: darkGray;
-`
+`;
+
+const Ele = styled.div`
+  background: red;
+  cursor: move;
+  margin: 10px;
+  position: relative;
+  height: 5rem;
+  width: 5rem;
+  resize: both;
+`;
+const Flexbox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 15px;
+`;
+
+const StyledBoard = styled(Board)`
+display: flex;
+flex-direction: column;
+width: 100%;
+max-width: 300px;
+background-color: #313131;
+padding: 15px;
+
+
+.card{
+  padding: 15px
+  background-color: white;
+  resize: horizontal;
+}
+`;
 
 function DraggableComponentPage() {
-  return <DraggablePage>hello turn me into a big page or summat</DraggablePage>;
+  const [characters, updateCharacters] = useState(fakeData);
+
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
+    const items = Array.from(characters);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    updateCharacters(items);
+  }
+
+  return (
+    <DraggablePage>
+      You can rearrange the blocks by dragging them around.
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="characters">
+          {(provided) => (
+            <ul
+              className="characters"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {characters.map(({ id, name }, index) => {
+                return (
+                  <Draggable key={id} draggableId={id.toString()} index={index}>
+                    {(provided) => (
+                      <Ele
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                      >
+                        <p>hello I am {name}</p>
+                      </Ele>
+                    )}
+                  </Draggable>
+                );
+              })}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </DraggablePage>
+  );
+}
+
+function Board(props) {
+  const drop = (e) => {
+    e.preventDefault();
+
+    const card_id = e.dataTransfer.getData("card_id");
+
+    const card = document.getElementById(card_id);
+    card.style.display = "block";
+
+    e.target.appendChild(card);
+  };
+
+  const dragOver = (e) => {
+    e.preventDefault();
+  };
+
+  return (
+    <>
+      <div
+        id={props.id}
+        onDrop={drop}
+        onDragOver={dragOver}
+        className={props.className}
+      >
+        {props.children}
+      </div>
+    </>
+  );
+}
+
+function Card(props) {
+  const dragStart = (e) => {
+    const target = e.target;
+    e.dataTransfer.setData("card_id", target.id);
+    // setTimeout(() => {
+    //   target.style.display = "none";
+    // }, 0);
+  };
+
+  const dragOver = (e) => {
+    e.stopPropagation();
+  };
+
+  return (
+    <div
+      className={props.className}
+      id={props.id}
+      onDragStart={dragStart}
+      onDragOver={dragOver}
+      draggable={props.draggable}
+    >
+      {props.children}
+    </div>
+  );
 }
 
 function HomePage() {
   const [draggableComponentIsVisible, setDraggableComponentIsVisible] =
+    useState(false);
+  const [draggableComponentIsVisible2, setDraggableComponentIsVisible2] =
     useState(false);
 
   return (
@@ -199,11 +337,39 @@ function HomePage() {
       >
         click to show draggable component
       </button>
+      <br />
       {draggableComponentIsVisible && <DraggableComponentPage />}
+      <button
+        onClick={() =>
+          setDraggableComponentIsVisible2(!draggableComponentIsVisible)
+        }
+      >
+        click to show draggable component 2
+      </button>
+      {draggableComponentIsVisible2 && (
+        <DraggablePage>
+          <Flexbox>
+            <StyledBoard id="board-1" className="board">
+              <Card id="card-1" className="card" draggable="true">
+                <p>Card One</p>
+              </Card>
+            </StyledBoard>
+
+            <StyledBoard id="board-2" className="board">
+              <Card id="card-2" className="card" draggable="true">
+                <p>Card Two</p>
+              </Card>
+              <Card id="card-3" className="card" draggable="true">
+                <p>Card three</p>
+              </Card>
+            </StyledBoard>
+          </Flexbox>
+        </DraggablePage>
+      )}
       <StyleBox />
 
       <GlobalStyle />
-      {/* The above are some testing components for animation - something I need to look a little bit further into */}
+      {/* The above is some testing components for animation - something I need to look a little bit further into */}
     </>
   );
 }
@@ -214,32 +380,24 @@ function App() {
       <Router>
         <DivButtonNav>
           <DivButton as="button">
-            {" "}
             <Link to="/" style={{ color: "lightGreen" }}>
-              {" "}
-              home{" "}
-            </Link>{" "}
+              home
+            </Link>
           </DivButton>
           <DivButton as="button">
-            {" "}
             <Link to="/hooks" style={{ color: "lightGreen" }}>
-              {" "}
-              hooks{" "}
-            </Link>{" "}
+              hooks
+            </Link>
           </DivButton>
           <DivButton as="button">
-            {" "}
             <Link to="/notes" style={{ color: "lightGreen" }}>
-              {" "}
-              notes{" "}
-            </Link>{" "}
+              notes
+            </Link>
           </DivButton>
           <DivButton as="button">
-            {" "}
             <Link to="/user/bigboi/mckenny" style={{ color: "lightGreen" }}>
-              {" "}
-              user{" "}
-            </Link>{" "}
+              user
+            </Link>
           </DivButton>
         </DivButtonNav>
 
