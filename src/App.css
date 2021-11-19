@@ -37,6 +37,30 @@
   }
 }
 
+.dnd-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+  background-color: white;
+  border-radius: 5px;
+  color: #282c34;
+  font-weight: bold;
+}
+.dnd-item:not(:last-of-type) {
+  margin-bottom: .5rem;
+}
+.dnd-item * {  
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.current {
+  background-color: #282c34;
+}
+
+
+
 
 /* .Responsive-Test{
   color: #ff0022;

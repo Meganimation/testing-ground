@@ -9,6 +9,7 @@ import { device } from "./utils/Breakpoints";
 import "./App.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import fakeData from "./fakeData.json";
+import DraggablesPage from "./pages/DraggablesPage";
 
 const TestHeader = styled.h1`
   color: yellow;
@@ -330,42 +331,7 @@ function HomePage() {
     <>
       <TestHeader> welcome to localhost:3000... </TestHeader>
       <h1 className="Responsive-Test"> Plz don't judge my CSS </h1>
-      <button
-        onClick={() =>
-          setDraggableComponentIsVisible(!draggableComponentIsVisible)
-        }
-      >
-        click to show draggable component
-      </button>
-      <br />
-      {draggableComponentIsVisible && <DraggableComponentPage />}
-      <button
-        onClick={() =>
-          setDraggableComponentIsVisible2(!draggableComponentIsVisible)
-        }
-      >
-        click to show draggable component 2
-      </button>
-      {draggableComponentIsVisible2 && (
-        <DraggablePage>
-          <Flexbox>
-            <StyledBoard id="board-1" className="board">
-              <Card id="card-1" className="card" draggable="true">
-                <p>Card One</p>
-              </Card>
-            </StyledBoard>
-
-            <StyledBoard id="board-2" className="board">
-              <Card id="card-2" className="card" draggable="true">
-                <p>Card Two</p>
-              </Card>
-              <Card id="card-3" className="card" draggable="true">
-                <p>Card three</p>
-              </Card>
-            </StyledBoard>
-          </Flexbox>
-        </DraggablePage>
-      )}
+ <DraggablesPage />
       <StyleBox />
 
       <GlobalStyle />
