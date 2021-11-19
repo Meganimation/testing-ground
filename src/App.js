@@ -10,6 +10,7 @@ import "./App.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import fakeData from "./fakeData.json";
 import DraggablesPage from "./pages/DraggablesPage";
+import DraggablesMain from "./pages/Draggables/DraggablesMain";
 
 const TestHeader = styled.h1`
   color: yellow;
@@ -322,16 +323,11 @@ function Card(props) {
 }
 
 function HomePage() {
-  const [draggableComponentIsVisible, setDraggableComponentIsVisible] =
-    useState(false);
-  const [draggableComponentIsVisible2, setDraggableComponentIsVisible2] =
-    useState(false);
-
   return (
     <>
       <TestHeader> welcome to localhost:3000... </TestHeader>
       <h1 className="Responsive-Test"> Plz don't judge my CSS </h1>
- <DraggablesPage />
+      <DraggablesPage />
       <StyleBox />
 
       <GlobalStyle />
