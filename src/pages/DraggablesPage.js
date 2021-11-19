@@ -84,12 +84,9 @@ function ThirdDragExample() {
   ];
 
   function DragNDropComponent({ data }) {
+    const [ogList, setOgList] = useState(data);
     const [list, setList] = useState(data);
     const [dragging, setDragging] = useState(false);
-
-    useEffect(() => {
-      setList(data);
-    }, [setList, data]);
 
     const dragItem = useRef();
     const dragNode = useRef();
@@ -156,27 +153,26 @@ function ThirdDragExample() {
     const handleDragEnter = (e, params) => {
       console.log("enter drag", params);
 
-      const currentItem = dragItem.current;
+      document.addEventListener('dragover', function(e) { e.preventDefault() })
 
+      const currentItem = dragItem.current;
 
       if (e.target !== dragNode.current) {
         console.log("target is not the same");
-        setList((oldList) => {
-          let newList = JSON.parse(JSON.stringify(oldList));
+       
+        let x = ogList[params.grpI].items.splice(
+          params.itmI,
+          0,
+          ogList[dragItem.current.grpI].items.splice(
+            dragItem.current.itmI,
+            1
+          )[0]
+        );
+        dragItem.current = params;
+        setList(x);
+      
 
-          newList[params.grpI].items.splice(
-            params.itmI,
-            0,
-            newList[dragItem.current.grpI].items.splice(
-              dragItem.current.itmI,
-              1
-            )
-          );
-
-          dragItem.current = params;
-
-          return newList;
-        });
+        
       }
     };
 
@@ -204,7 +200,7 @@ function ThirdDragExample() {
     return data.map((grp, grpI) => {
       return (
         <>
-          <DndGroup>
+          <DndGroup onDragEnter={dragging && !grp.items.length?(e) => handleDragEnter(e,{grpI, itmI: 0}):null}>
             <GroupTitle>{grp.title}</GroupTitle>
             {grp.items.map((item, itmI) => (
               <div
