@@ -90,6 +90,10 @@ function ThirdDragExample() {
     const [list, setList] = useState(data);
     const [dragging, setDragging] = useState(false);
 
+    useEffect(() => {
+      setList(data);
+  }, [setList, data])
+
     const dragItem = useRef();
     const dragNode = useRef();
 
@@ -149,6 +153,8 @@ function ThirdDragExample() {
       dragNode.current = e.target;
       dragNode.current.addEventListener("dragend", handleDragEnd);
 
+
+
      
 
       setTimeout(() => {
@@ -176,7 +182,7 @@ const currentItem = dragItem.current
           newList[params.grpI].items.splice(params.itmI, 0, newList[dragItem.current.grpI].items.splice(dragItem.current.itmI,1)[0])
           
           dragItem.current = params;
-          console.log('newlist', newList)
+
           return newList
         })
       }
