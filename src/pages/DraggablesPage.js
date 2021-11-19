@@ -4,7 +4,6 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import fakeData from "../fakeData.json";
 import "../App.css";
 
-
 //create a styled component that takes up all the space on the page
 const DraggablePage = styled.section`
   position: absolute;
@@ -84,20 +83,16 @@ function ThirdDragExample() {
     { title: "group 2", items: ["4", "5"] },
   ];
 
-
-
   function DragNDropComponent({ data }) {
     const [list, setList] = useState(data);
     const [dragging, setDragging] = useState(false);
 
     useEffect(() => {
       setList(data);
-  }, [setList, data])
+    }, [setList, data]);
 
     const dragItem = useRef();
     const dragNode = useRef();
-
-
 
     const DndItem = styled.div`
       display: flex;
@@ -124,28 +119,28 @@ function ThirdDragExample() {
     `;
 
     const DndItemCurrent = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 150px;
 
-    border-radius: 5px;
-    color: black;
-    font-weight: bold;
+      border-radius: 5px;
+      color: black;
+      font-weight: bold;
 
-    * {
-      margin: 0;
-      font-size: 1.2rem;
-    }
+      * {
+        margin: 0;
+        font-size: 1.2rem;
+      }
 
-    p {
-      color: red;
-    }
+      p {
+        color: red;
+      }
 
-    &:not(:last-of-type) {
-      margin-bottom: 0.5rem;
-    }
-    `
+      &:not(:last-of-type) {
+        margin-bottom: 0.5rem;
+      }
+    `;
 
     const handleDragStart = (e, params) => {
       console.log("drag start", params);
@@ -153,62 +148,58 @@ function ThirdDragExample() {
       dragNode.current = e.target;
       dragNode.current.addEventListener("dragend", handleDragEnd);
 
-
-
-     
-
       setTimeout(() => {
         setDragging(true);
       }, 0);
-
-   
     };
 
     const handleDragEnter = (e, params) => {
-      console.log('enter drag', params)
-  
-const currentItem = dragItem.current 
+      console.log("enter drag", params);
 
-      // if (e.target.id === dragNode.current.id) {
-      //   e.target.style.background = "darkGreen";
-      // }
+      const currentItem = dragItem.current;
 
-  
-      if (e.target.id !== dragNode.current.id) {
-        console.log('target is not the same')
-        setList(oldList => {
+
+      if (e.target !== dragNode.current) {
+        console.log("target is not the same");
+        setList((oldList) => {
           let newList = JSON.parse(JSON.stringify(oldList));
 
-          newList[params.grpI].items.splice(params.itmI, 0, newList[dragItem.current.grpI].items.splice(dragItem.current.itmI,1)[0])
-          
+          newList[params.grpI].items.splice(
+            params.itmI,
+            0,
+            newList[dragItem.current.grpI].items.splice(
+              dragItem.current.itmI,
+              1
+            )
+          );
+
           dragItem.current = params;
 
-          return newList
-        })
+          return newList;
+        });
       }
-    }
+    };
 
     const handleDragEnd = () => {
       console.log("drag end");
       setDragging(false);
-    
+
       dragNode.current.removeEventListener("dragend", handleDragEnd);
       dragItem.current = null;
       dragNode.current = null;
-      
+
       // dragItem.current = params;
     };
 
-    
-    
     const getStyles = (item) => {
-      if (dragItem.current.grpI === item.grpI && dragItem.current.itmI === item.itmI) {
-          return "dnd-item current"
+      if (
+        dragItem.current.grpI === item.grpI &&
+        dragItem.current.itmI === item.itmI
+      ) {
+        return "dnd-item current";
       }
-      return "dnd-item"
-  }
-
-
+      return "dnd-item";
+    };
 
     return data.map((grp, grpI) => {
       return (
@@ -216,10 +207,22 @@ const currentItem = dragItem.current
           <DndGroup>
             <GroupTitle>{grp.title}</GroupTitle>
             {grp.items.map((item, itmI) => (
-               <div draggable key={item}  onDragStart={(e) => handleDragStart(e, {grpI, itmI})} onDragEnter={dragging?(e) => {handleDragEnter(e, {grpI, itmI})}:null} className={dragging?getStyles({grpI, itmI}):"dnd-item"}>
-               {item}
-             </div>
-     
+              <div
+                draggable
+                key={item}
+                onDragStart={(e) => handleDragStart(e, { grpI, itmI })}
+                onDragEnter={
+                  dragging
+                    ? (e) => {
+                        handleDragEnter(e, { grpI, itmI });
+                      }
+                    : null
+                }
+                className={dragging ? getStyles({ grpI, itmI }) : "dnd-item"}
+              >
+                {item}
+              </div>
+
               // <DndItem
               //   draggable
               //   key={itmI}
