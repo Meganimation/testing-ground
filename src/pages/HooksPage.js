@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Form from "../components/hookcomponents/Form";
-import CakeStore from "../components/hookcomponents/CakeStore";
-import Ref from "../components/hookcomponents/Ref";
-import Counter from "../components/hookcomponents/Counter";
-import UseLayout from "../components/hookcomponents/UseLayout";
+import Form from "../components/HookComponents/Form";
+import CakeStore from "../components/HookComponents/CakeStore";
+import Ref from "../components/HookComponents/Ref";
+import Counter from "../components/HookComponents/Counter";
+import UseLayout from "../components/HookComponents/UseLayout";
 import { css, keyframes } from "styled-components";
 import { device } from "../utils/Breakpoints";
 import CustomButton from "../components/CustomButton";
@@ -18,6 +18,8 @@ export const HooksPage = () => {
   const [useLayoutVisibility, setUseLayoutVisibility] = useState(false);
   const [toggleCustomHookComponent, setToggleCustomHookComponent] =
     useState(true);
+
+    
 
   const animation = keyframes`
   0% {
