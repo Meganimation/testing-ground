@@ -10,7 +10,7 @@ import "./App.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import fakeData from "./fakeData.json";
 import DraggablesPage from "./pages/DraggablesPage";
-import DraggablesMain from "./pages/Draggables/DraggablesMain";
+import Test from './testcomponents/Test';
 
 const TestHeader = styled.h1`
   color: yellow;
@@ -173,160 +173,15 @@ const DivButtonNav = styled.nav`
   z-index: 2;
 `;
 
-//create a styled component that takes up all the space on the page
-const DraggablePage = styled.section`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 80vw;
-  height: 80vh;
-  background-color: darkGray;
-`;
 
-const Ele = styled.div`
-  background: red;
-  cursor: move;
-  margin: 10px;
-  position: relative;
-  height: 5rem;
-  width: 5rem;
-  resize: both;
-`;
-const Flexbox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  margin: 0 auto;
-  padding: 15px;
-`;
-
-const StyledBoard = styled(Board)`
-display: flex;
-flex-direction: column;
-width: 100%;
-max-width: 300px;
-background-color: #313131;
-padding: 15px;
-
-
-.card{
-  padding: 15px
-  background-color: white;
-  resize: horizontal;
-}
-`;
-
-function DraggableComponentPage() {
-  const [characters, updateCharacters] = useState(fakeData);
-
-  function handleOnDragEnd(result) {
-    if (!result.destination) return;
-    const items = Array.from(characters);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    updateCharacters(items);
-  }
-
-  return (
-    <DraggablePage>
-      You can rearrange the blocks by dragging them around.
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="characters">
-          {(provided) => (
-            <ul
-              className="characters"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {characters.map(({ id, name }, index) => {
-                return (
-                  <Draggable key={id} draggableId={id.toString()} index={index}>
-                    {(provided) => (
-                      <Ele
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        ref={provided.innerRef}
-                      >
-                        <p>hello I am {name}</p>
-                      </Ele>
-                    )}
-                  </Draggable>
-                );
-              })}
-              {provided.placeholder}
-            </ul>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </DraggablePage>
-  );
-}
-
-function Board(props) {
-  const drop = (e) => {
-    e.preventDefault();
-
-    const card_id = e.dataTransfer.getData("card_id");
-
-    const card = document.getElementById(card_id);
-    card.style.display = "block";
-
-    e.target.appendChild(card);
-  };
-
-  const dragOver = (e) => {
-    e.preventDefault();
-  };
-
-  return (
-    <>
-      <div
-        id={props.id}
-        onDrop={drop}
-        onDragOver={dragOver}
-        className={props.className}
-      >
-        {props.children}
-      </div>
-    </>
-  );
-}
-
-function Card(props) {
-  const dragStart = (e) => {
-    const target = e.target;
-    e.dataTransfer.setData("card_id", target.id);
-    // setTimeout(() => {
-    //   target.style.display = "none";
-    // }, 0);
-  };
-
-  const dragOver = (e) => {
-    e.stopPropagation();
-  };
-
-  return (
-    <div
-      className={props.className}
-      id={props.id}
-      onDragStart={dragStart}
-      onDragOver={dragOver}
-      draggable={props.draggable}
-    >
-      {props.children}
-    </div>
-  );
-}
 
 function HomePage() {
   return (
     <>
       <TestHeader> welcome to localhost:3000... </TestHeader>
       <h1 className="Responsive-Test"> Plz don't judge my CSS </h1>
+
+      <Test /> 
       <DraggablesPage />
       <StyleBox />
 
