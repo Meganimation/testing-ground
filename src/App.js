@@ -10,12 +10,12 @@ import "./App.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import fakeData from "./fakeData.json";
 import DraggablesPage from "./pages/DraggablesPage";
-import Test from './testcomponents/Test';
+import Test from "./testcomponents/Test";
+import CSSPage from "./pages/CSSPages/CSSPage";
 
 const TestHeader = styled.h1`
   color: yellow;
   font-family: monospace;
-  margin: 10px;
 
   @media ${device.smallMobile} {
     color: blue;
@@ -58,7 +58,7 @@ const Content = styled.div`
   position: absolute;
   top: 0px;
   text-align: center;
-  margin: 10%;
+  margin: 5vw;
 
   @media (max-width: 168px) {
     color: blue;
@@ -101,22 +101,6 @@ const animation = keyframes`
 
 const animationRule = css`
   ${animation} 5s infinite alternate;
-`;
-
-const StyleBox = styled.div`
-  background: green;
-  width: 10px;
-  height: 200px;
-  position: absolute;
-  left: 90%;
-  text-align: center;
-  display: center;
-  padding: 40px;
-`;
-
-const ExtendedComponent = styled(StyleBox)`
-  background-color: black;
-  animation: ${animationRule};
 `;
 
 // the animation keyframes reduce/increase the opacity. The animationRule links to animation keyframe and determines how its going to animate. ExtendedComponent is an extension of StyleBox. It overrides its background color. When the animation reaches 0% opacity, it shows the components background underneath it.
@@ -173,20 +157,44 @@ const DivButtonNav = styled.nav`
   z-index: 2;
 `;
 
-
+const HomeContent = styled.div`
+  width: 100vw;
+  height: 100vh;
+  `
 
 function HomePage() {
+  const [showDraggableContent, setShowDraggableContent] = useState(false);
+  const [showCSSContent, setShowCssContent] = useState(false);
+
+  const allLocalStates = [showDraggableContent, showCSSContent];
   return (
     <>
-      <TestHeader> welcome to localhost:3000... </TestHeader>
-      <h1 className="Responsive-Test"> Plz don't judge my CSS </h1>
+      {!allLocalStates.includes(true) ? (
+        <>
+          <TestHeader>Holy shit I need to tidy this place up. </TestHeader>
+          <h1 className="Responsive-Test"> Plz don't judge my CSS </h1>
+        </>
+      ) : null}
+<HomeContent>
+      <button
+        onClick={() => {
+          setShowDraggableContent(!showDraggableContent);
+        }}
+      >
+        Toggle Draggable Content
+      </button>
 
-      <Test /> 
-      <DraggablesPage />
-      <StyleBox />
+      <button
+        onClick={() => {
+          setShowCssContent(!showCSSContent);
+        }}
+      >
+        Toggle CSS Content
+      </button>
+      {showDraggableContent && <DraggablesPage />}
 
-      <GlobalStyle />
-      {/* The above is some testing components for animation - something I need to look a little bit further into */}
+      {showCSSContent && <CSSPage />}
+      </HomeContent>
     </>
   );
 }
