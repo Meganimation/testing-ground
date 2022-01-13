@@ -32,6 +32,8 @@ export const HooksPage = () => {
 }
 `;
 
+
+
   const animationRule = css`
     ${animation} 5s infinite alternate;
   `;
