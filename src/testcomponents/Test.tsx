@@ -16,10 +16,31 @@ function Test() {
         setCount(count + 1);
     }
 
+
+    const personObj = [
+        {name: "John", desc: "He is a good"},
+        {name: "Mary", desc: "She is a good"},
+    ]
+
+
+    const mapPerson = personObj.map((person: any) => {
+        return (
+     <>
+        <div>{person.name}</div>
+        <div>{person.name}</div>
+    </>
+        )
+    })
+
+
+
+
+
+
     return(
         <StyledDiv >
-            
             <BabyTest name={'hello'} desc={'desctiption'} count={count} handleCount={handleCount} />
+            {mapPerson}
         </StyledDiv>
     )
 }

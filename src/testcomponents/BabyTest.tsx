@@ -1,12 +1,5 @@
 import React from 'react'
 
-interface IBabyTestProps {
-    name: string;
-    desc: string;
-    handleCount: () => void;
-    count: number;
-  }
-
 function BabyTest(props: IBabyTestProps) {
 
     const { name, desc, handleCount, count } = props;
@@ -19,6 +12,13 @@ function BabyTest(props: IBabyTestProps) {
         </div>
     )
 }
+
+interface IBabyTestProps {
+    name: string;
+    desc: string;
+    handleCount: () => void;
+    count: number;
+  }
 
 
 
