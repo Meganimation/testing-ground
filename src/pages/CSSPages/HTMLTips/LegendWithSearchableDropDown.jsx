@@ -5,7 +5,7 @@ const LegendContent = styled.div`
 s
 `;
 
-function Legend() {
+function LegendWithSearchableDropDown() {
   return (
     <LegendContent>
       This shows you how to make an easy drop down menu which can be searched!
@@ -29,4 +29,4 @@ function Legend() {
   );
 }
 
-export default Legend;
+export default LegendWithSearchableDropDown;
