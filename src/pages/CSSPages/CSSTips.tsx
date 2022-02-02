@@ -1,7 +1,7 @@
 import React from "react";
 import LegendWithSearchableDropDown from "./HTMLTips/LegendWithSearchableDropDown";
 
-function CSSTips(props: any) {
+function CSSTips(props: ICSSTipsProps) {
   return (
     <div>
       <button onClick={() => props.handleExit("cssTips")}> Exit </button>
@@ -19,6 +19,10 @@ function CSSTips(props: any) {
 
     </div>
   );
+}
+
+interface ICSSTipsProps {
+  handleExit: (page: string) => void;
 }
 
 export default CSSTips;

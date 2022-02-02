@@ -12,7 +12,7 @@ import fakeData from "./fakeData.json";
 import DraggablesPage from "./pages/DraggablesPage";
 import Test from "./testcomponents/Test";
 import CSSPage from "./pages/CSSPages/CSSPage";
-
+import APIPage from "./pages/APIPages.tsx/APIPage";
 const TestHeader = styled.h1`
   color: yellow;
   font-family: monospace;
@@ -165,6 +165,7 @@ const HomeContent = styled.div`
 function HomePage() {
   const [showDraggableContent, setShowDraggableContent] = useState(false);
   const [showCSSContent, setShowCssContent] = useState(false);
+  const [showAPIContent, setShowAPIContent] = useState(false);
 
   const allLocalStates = [showDraggableContent, showCSSContent];
   return (
@@ -191,9 +192,17 @@ function HomePage() {
       >
         Toggle CSS Content
       </button>
+      <button
+        onClick={() => {
+          setShowAPIContent(!showAPIContent);
+        }}
+      >
+        Toggle API Content
+      </button>
       {showDraggableContent && <DraggablesPage />}
 
       {showCSSContent && <CSSPage />}
+      {showAPIContent && <APIPage />}
       </HomeContent>
     </>
   );
