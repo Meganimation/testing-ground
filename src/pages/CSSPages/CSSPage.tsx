@@ -26,7 +26,7 @@ background-color: #2d2d2d;
 
 function CSSPage() {
 
-    const [showCSSTips, setShowCSSTips] = useState(false);
+    const [showCSSTips, setShowCSSTips] = useState(true);
 
     const handleExit = (page: string) => {
     switch (page) {

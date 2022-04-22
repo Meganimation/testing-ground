@@ -164,7 +164,7 @@ const HomeContent = styled.div`
 
 function HomePage() {
   const [showDraggableContent, setShowDraggableContent] = useState(false);
-  const [showCSSContent, setShowCssContent] = useState(false);
+  const [showCSSContent, setShowCssContent] = useState(true);
   const [showAPIContent, setShowAPIContent] = useState(false);
 
   const allLocalStates = [showDraggableContent, showCSSContent];
