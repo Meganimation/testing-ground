@@ -33,7 +33,7 @@ function APIPage() {
 
     const handleExit = (page: string) => {
     switch (page) {
-        case 'cssTips':
+        case 'infiniteScrollOne':
             setShowInfiniteScrollOne(false);
             break;
         default:

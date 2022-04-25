@@ -50,7 +50,7 @@ function InfiniteScrollComponentTwo(props: IInfiniteScrollComponentProps) {
 }
 
 interface IInfiniteScrollComponentProps {
-  handleExit: (page: string) => void;
+  handleExit: any;
 }
 
 export default InfiniteScrollComponentTwo;
